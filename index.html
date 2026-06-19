@@ -5,12 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>T.E.A.R. Systems Inc. | Property Management</title>
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f6f8;
             color: #333;
+            line-height: 1.6;
         }
         header {
             background-color: #1a2a3a;
@@ -19,6 +23,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         header h1 {
             margin: 0;
@@ -30,6 +38,7 @@
             text-decoration: none;
             margin-left: 20px;
             font-weight: 500;
+            transition: color 0.2s;
         }
         nav a:hover {
             color: white;
@@ -39,16 +48,19 @@
             background-size: cover;
             background-position: center;
             color: white;
-            padding: 100px 40px;
+            padding: 120px 40px;
             text-align: center;
         }
         .hero h2 {
-            font-size: 36px;
+            font-size: 42px;
             margin-bottom: 10px;
+            font-weight: 600;
         }
         .hero p {
-            font-size: 18px;
+            font-size: 20px;
             color: #bdc3c7;
+            max-width: 600px;
+            margin: 0 auto;
         }
         .container {
             max-width: 1000px;
@@ -57,16 +69,17 @@
         }
         .section {
             background: white;
-            padding: 30px;
-            margin-bottom: 30px;
+            padding: 40px;
+            margin-bottom: 40px;
             border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
         h3 {
             color: #1a2a3a;
             border-bottom: 2px solid #ecf0f1;
             padding-bottom: 10px;
             margin-top: 0;
+            font-size: 22px;
         }
         .grid {
             display: grid;
@@ -79,10 +92,28 @@
             padding: 15px;
             border-left: 4px solid #2c3e50;
             border-radius: 2px;
+            font-size: 14px;
         }
-        .login-form {
-            max-width: 350px;
-            margin: 0 auto;
+        .job-list {
+            margin-top: 20px;
+        }
+        .job-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .job-item:last-child {
+            border-bottom: none;
+        }
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        @media (max-width: 768px) {
+            .two-column { grid-template-columns: 1fr; }
         }
         .form-group {
             margin-bottom: 15px;
@@ -90,36 +121,72 @@
         .form-group label {
             display: block;
             margin-bottom: 5px;
-            font-weight: bold;
+            font-weight: 600;
             font-size: 14px;
+            color: #4a5568;
         }
-        .form-group input {
+        .form-group input, .form-group select, .form-group textarea {
             width: 100%;
             padding: 10px;
             box-sizing: border-box;
-            border: 1px solid #ccc;
+            border: 1px solid #cbd5e1;
             border-radius: 4px;
+            font-family: inherit;
         }
         .btn {
             background-color: #1a2a3a;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 20px;
             border: none;
             border-radius: 4px;
             width: 100%;
             cursor: pointer;
             font-weight: bold;
+            font-size: 15px;
+            transition: background-color 0.2s;
         }
         .btn:hover {
             background-color: #2c3e50;
         }
+        .btn-secondary {
+            background-color: #e2e8f0;
+            color: #334155;
+            padding: 6px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+        }
         footer {
-            text-align: center;
-            padding: 20px;
             background-color: #1a2a3a;
-            color: #7f8c8d;
+            color: #94a3b8;
+            padding: 40px 20px;
+            font-size: 13px;
+            margin-top: 80px;
+        }
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .footer-section {
+            min-width: 200px;
+        }
+        .footer-section h4 {
+            color: white;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
             font-size: 12px;
-            margin-top: 60px;
+            color: #64748b;
         }
     </style>
 </head>
@@ -130,66 +197,125 @@
         <nav>
             <a href="#about">About</a>
             <a href="#portfolio">Properties</a>
+            <a href="#careers">Careers</a>
+            <a href="#contact">Contact</a>
             <a href="#portal">Resident Portal</a>
         </nav>
     </header>
 
     <div class="hero">
         <h2>Building Beyond Boundaries</h2>
-        <p>Premium corporate and residential property management across major Canadian urban centers.</p>
+        <p>Premium corporate infrastructure and multi-family residential operations across Canada's expanding urban landscapes.</p>
     </div>
 
     <div class="container">
         
+        <!-- ABOUT SECTION -->
         <div id="about" class="section">
             <h3>Corporate Overview</h3>
-            <p>T.E.A.R. Systems Inc. delivers industry-leading structural engineering and multi-family residential operations. Our design philosophy prioritizes perfect spatial optimization, geometric symmetry, and streamlined modernization within dense urban landscapes. We manage our infrastructure with absolute structural continuity to ensure long-term efficiency for all occupants.</p>
-            <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1000&q=80" alt="T.E.A.R. Infrastructure" style="width:100%; max-height:400px; object-fit:cover; border-radius:4px; margin-top:20px;">
+            <p>Founded on a commitment to architectural precision and structural integrity, T.E.A.R. Systems Inc. delivers industry-leading management for commercial and high-density residential properties. Our operational philosophy pairs modern tenant frameworks with specialized environmental optimization, ensuring absolute consistency, geometric efficiency, and continuity across all regional assets.</p>
+            <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1000&q=80" alt="T.E.A.R. Infrastructure Headquarters" style="width:100%; max-height:350px; object-fit:cover; border-radius:4px; margin-top:20px;">
         </div>
 
+        <!-- PORTFOLIO SECTION -->
         <div id="portfolio" class="section">
             <h3>Regional Holdings</h3>
-            <p>We actively manage major architectural assets across the country:</p>
+            <p>Our portfolio includes primary multi-unit residential complexes and commercial spaces located strategically within Canada's primary economic zones:</p>
             <div class="grid">
-                <div class="card"><strong>Toronto</strong><br><small>The Toronto Plaza</small></div>
-                <div class="card"><strong>Montreal</strong><br><small>The Montreal Court</small></div>
-                <div class="card"><strong>Calgary</strong><br><small>The Calgary Hub</small></div>
-                <div class="card"><strong>Ottawa</strong><br><small>The Ottawa Center</small></div>
-                <div class="card"><strong>Edmonton</strong><br><small>The Edmonton Hub</small></div>
-                <div class="card"><strong>Winnipeg</strong><br><small>The Winnipeg Center</small></div>
-                <div class="card"><strong>Vancouver</strong><br><small>The Vancouver Tower</small></div>
-                <div class="card"><strong>Quebec City</strong><br><small>The Quebec Plaza</small></div>
-                <div class="card"><strong>Halifax</strong><br><small>The Halifax Court</small></div>
-                <div class="card"><strong>London</strong><br><small>The London Square</small></div>
-                <div class="card"><strong>Saskatoon</strong><br><small>The Saskatoon Hub</small></div>
-                <div class="card"><strong>Regina</strong><br><small>The Regina Tower</small></div>
-                <div class="card"><strong>Victoria</strong><br><small>The Victoria Crest</small></div>
-                <div class="card"><strong>St. John's</strong><br><small>The St. John's Crest</small></div>
-                <div class="card"><strong>Fredericton</strong><br><small>The Fredericton Plaza</small></div>
-                <div class="card"><strong>Charlottetown</strong><br><small>The Charlottetown Center</small></div>
+                <div class="card"><strong>Toronto Regional Hub</strong><br><small>The Toronto Plaza</small></div>
+                <div class="card"><strong>Montreal District</strong><br><small>The Montreal Court</small></div>
+                <div class="card"><strong>Calgary Holdings</strong><br><small>The Calgary Hub</small></div>
+                <div class="card"><strong>Ottawa Executive</strong><br><small>The Ottawa Center</small></div>
+                <div class="card"><strong>Edmonton Branch</strong><br><small>The Edmonton Hub</small></div>
+                <div class="card"><strong>Winnipeg Operations</strong><br><small>The Winnipeg Center</small></div>
+                <div class="card"><strong>Vancouver Waterfront</strong><br><small>The Vancouver Tower</small></div>
+                <div class="card"><strong>Quebec Central</strong><br><small>The Quebec Plaza</small></div>
+                <div class="card"><strong>Halifax Atlantic</strong><br><small>The Halifax Court</small></div>
+                <div class="card"><strong>London District</strong><br><small>The London Square</small></div>
+                <div class="card"><strong>Saskatoon Hub</strong><br><small>The Saskatoon Hub</small></div>
+                <div class="card"><strong>Regina Sector</strong><br><small>The Regina Tower</small></div>
+                <div class="card"><strong>Victoria Pacific</strong><br><small>The Victoria Crest</small></div>
+                <div class="card"><strong>St. John's Outpost</strong><br><small>The St. John's Crest</small></div>
+                <div class="card"><strong>Fredericton Square</strong><br><small>The Fredericton Plaza</small></div>
+                <div class="card"><strong>Charlottetown Unit</strong><br><small>The Charlottetown Center</small></div>
             </div>
         </div>
 
+        <!-- TWO COLUMN LAYOUT FOR CAREERS & CONTACT -->
+        <div class="two-column">
+            
+            <!-- CAREERS -->
+            <div id="careers" class="section">
+                <h3>Careers at T.E.A.R.</h3>
+                <p>Join a team dedicated to long-term architectural continuity and structural excellence.</p>
+                <div class="job-list">
+                    <div class="job-item">
+                        <div><strong>Property Administrator</strong><br><small>Toronto, ON • Full-Time</small></div>
+                        <a href="#" class="btn-secondary" onclick="alert('Applications for this cycle are currently closed.'); return false;">Apply</a>
+                    </div>
+                    <div class="job-item">
+                        <div><strong>Junior Systems Inspector</strong><br><small>Winnipeg, MB • Full-Time</small></div>
+                        <a href="#" class="btn-secondary" onclick="alert('Applications for this cycle are currently closed.'); return false;">Apply</a>
+                    </div>
+                    <div class="job-item">
+                        <div><strong>Night Shift Maintenance</strong><br><small>Regional Allocations • Varied</small></div>
+                        <a href="#" class="btn-secondary" onclick="alert('Applications for this cycle are currently closed.'); return false;">Apply</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTACT -->
+            <div id="contact" class="section">
+                <h3>Department of Tear Management</h3>
+                <p>For administrative routing, vacancy details, or to report localized structural asset degradation, please contact our central coordination queue directly:</p>
+                <p style="font-weight: bold; font-size: 16px; margin: 25px 0; text-align: center;">
+                    ✉️ <a href="mailto:tear.management54@gmail.com" style="color: #1a2a3a; text-decoration: underline;">tear.management54@gmail.com</a>
+                </p>
+                <p style="color: #64748b; font-size: 13px; text-align: center; line-height: 1.4;">
+                    <em>Notice: Inquiries are processed by system priority. Please allow 24–48 hours for regional allocation routing.</em>
+                </p>
+            </div>
+
+        </div>
+
+        <!-- PORTAL SECTION -->
         <div id="portal" class="section">
             <h3>Resident Portal</h3>
-            <p style="text-align: center; color: #666; font-size: 14px;">Authorized resident and staff login gateway.</p>
-            <form class="login-form" onsubmit="alert('Error 403: Portal access restricted to internal T.E.A.R. network systems.'); return false;">
+            <p style="text-align: center; color: #64748b; font-size: 14px; margin-bottom: 20px;">Secure administrative gateway for authorized residents and technical personnel.</p>
+            <form style="max-width: 350px; margin: 0 auto;" onsubmit="alert('Error 403: Network protocol mismatch. Connection restricted to internal T.E.A.R. terminal grids.'); return false;">
                 <div class="form-group">
                     <label>Account / Unit ID</label>
-                    <input type="text" placeholder="Enter ID" required>
+                    <input type="text" placeholder="EX: TRO-9901" required>
                 </div>
                 <div class="form-group">
-                    <label>Secure Key</label>
+                    <label>Secure System Key</label>
                     <input type="password" placeholder="••••••••" required>
                 </div>
-                <button type="submit" class="btn">Access Terminal</button>
+                <button type="submit" class="btn">Access System Terminal</button>
             </form>
         </div>
 
     </div>
 
+    <!-- ROBUST FOOTER -->
     <footer>
-        &copy; 2026 T.E.A.R. Systems Inc. All Rights Reserved. Structural Continuity Mandate.
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>T.E.A.R. Systems Inc.</h4>
+                <p>Providing foundational stability and facility oversight since 1954.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Hours of Operation</h4>
+                <p>Mon - Fri: 8:00 AM - 5:00 PM<br>Emergency Technical Dispatch: 24/7</p>
+            </div>
+            <div class="footer-section">
+                <h4>Corporate Links</h4>
+                <p style="line-height: 2;"><a href="#" style="color:#94a3b8; text-decoration:none;">Privacy Policy</a><br><a href="#" style="color:#94a3b8; text-decoration:none;">Terms of Service</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 T.E.A.R. Systems Inc. All Rights Reserved. Controlled Spatial Continuity Mandate.
+        </div>
     </footer>
 
 </body>
