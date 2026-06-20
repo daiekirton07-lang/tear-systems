@@ -181,17 +181,12 @@
 </head>
 <body>
 
-<!-- ========================================== -->
-<!-- LAYER 1: MASSIVE PUBLIC INFORMATION PORTAL -->
-<!-- ========================================== -->
 <div id="directory-portal">
     <h1 id="dir-title">Index of /public/assets/archive</h1>
     <hr>
     
-    <!-- Root Directory View -->
     <pre id="root-dir">
 <a onclick="showViewer('parent')">../</a>
-<span class="dir-item">[DIR]</span> <a onclick="enterFolder('legacy')">restructuring_legacy_1986/</a>             1998-04-03 11:12     -
 <span class="dir-item">[DIR]</span> <span class="dead-link">grid_monitoring_2003_fallback/</span>        2003-08-15 01:22     -
 <span class="dir-item">[DIR]</span> <span class="dead-link">zoning_blueprints_toronto_east/</span>       2014-05-19 09:44     -
 <span class="dir-item">[DIR]</span> <span class="dir-redacted">███████████████████████████████/</span>      1985-10-31 00:00     -
@@ -203,6 +198,7 @@
 <span class="file-item">[CSV]</span> <a onclick="showViewer('freight')">regional_freight_manifest_midwest.csv</a> 2026-02-10 13:14   188KB
 <span class="file-item">[SYS]</span> <span class="dead-link">grid_load_balance_anchor_09.sys</span>       2026-05-01 03:40   412KB
 <span class="file-item">[TXT]</span> <span class="dead-link">property_mgmt_onboarding_template.txt</span> 2025-10-20 16:25    24KB
+<span class="dir-item">[DIR]</span> <a onclick="enterFolder('legacy')">restructuring_legacy_1986/</a>             1998-04-03 11:12     -
 <span class="file-item">[PDF]</span> <span class="dir-redacted">██████████████████████████████.pdf</span>    2004-09-26 12:00   8.4MB
 <span class="file-item">[TXT]</span> <span class="dead-link">substation_b_regression_event.log</span>     2026-04-12 04:12     8KB
 <span class="file-item">[CONF]</span><span class="dead-link">network_scrub_firmware_manifest.conf</span> 2024-07-02 08:15    12KB
@@ -212,7 +208,6 @@
 <span class="file-item">[TXT]</span> <span class="dead-link">deadbolt_hardware_distribution.txt</span>    2025-06-18 09:12    14KB
     </pre>
 
-    <!-- Subdirectory View (1986 Legacy) -->
     <pre id="legacy-dir" style="display: none;">
 <a onclick="enterFolder('root')">../</a>
 <span class="file-item">[LOG]</span> <a onclick="triggerTerminalBoot()">B6-SHI-TEXT.log</a>                       1986-11-12 23:04     4KB
@@ -225,17 +220,11 @@
     <address>Apache/2.4.41 (Ubuntu) Server at portal.tearsystems.com Port 80</address>
 </div>
 
-<!-- ========================================== -->
-<!-- LAYER 2: TEXT VIEWER FOR DUMMY JUNK DATA   -->
-<!-- ========================================== -->
 <div id="file-content-viewer">
     <div class="back-btn" onclick="closeViewer()">🧾 Return to Directory Listing</div>
     <pre id="file-raw-text"></pre>
 </div>
 
-<!-- ========================================== -->
-<!-- LAYER 3: INTERMEDIARY TERMINAL INITIALIZER -->
-<!-- ========================================== -->
 <div id="boot-screen">
     <pre>
 CONNECT 10.244.81.4 // PORTAL PROTOCOL SECURE RECOVERY...
@@ -247,9 +236,6 @@ READY.
     </pre>
 </div>
 
-<!-- ========================================== -->
-<!-- LAYER 4: THE HORROR TERMINAL               -->
-<!-- ========================================== -->
 <div id="terminal-view">
     <div class="scanline"></div>
 
@@ -284,7 +270,6 @@ ALL CENTRAL <span class="redacted">MANUFACTURING OPERATIONS AND HEAVY PLANT</spa
 
         <div class="terminal-prompt">
             <span>Awaiting input... _</span>
-            <!-- Way back option from inside the green terminal -->
             <span class="terminal-exit-btn" onclick="exitTerminal()">[ DISCONNECT / EXIT ]</span>
         </div>
     </div>
@@ -294,9 +279,6 @@ ALL CENTRAL <span class="redacted">MANUFACTURING OPERATIONS AND HEAVY PLANT</spa
     </div>
 </div>
 
-<!-- ========================================== -->
-<!-- AUTOMATION CONTROLLER                      -->
-<!-- ========================================== -->
 <script>
     // Handles Folder Navigation
     function enterFolder(folderName) {
