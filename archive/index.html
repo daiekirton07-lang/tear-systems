@@ -2,21 +2,83 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>RECOVERY_INDEX_1986_SEC3.LOG</title>
+    <title>Index of /public/assets/archive</title>
     <style>
+        /* --- GLOBAL & RESET STYLES --- */
         html, body {
             height: 100%;
             margin: 0;
             padding: 0;
-            background-color: #0d0e0d;
+            background-color: #ffffff; /* Starts as clean, boring white */
+            color: #000000;
+            font-family: monospace;
+            box-sizing: border-box;
         }
-        body {
-            color: #39ff14; /* Neon matrix green */
-            font-family: "Courier New", Courier, monospace;
+
+        /* --- STATE: BORING APACHE DIRECTORY --- */
+        #directory-portal {
+            padding: 20px;
+            display: block;
+        }
+        #directory-portal h1 {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+        #directory-portal hr {
+            border: 0;
+            border-top: 1px solid #000000;
+            margin: 10px 0;
+        }
+        #directory-portal pre {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        #directory-portal a {
+            color: #0000ee;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        #directory-portal a:hover {
+            text-decoration: underline;
+        }
+        #directory-portal address {
+            font-size: 0.9em;
+            font-style: italic;
+            color: #555555;
+            margin-top: 15px;
+        }
+
+        /* --- DUMMY FILE TEXT VIEWER --- */
+        #file-content-viewer {
+            display: none;
+            padding: 30px;
+            background-color: #fafafa;
+            border: 1px solid #ccc;
+            margin: 20px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #0000ee;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        /* --- STATE: HORROR TERMINAL (YOUR ORIGINAL STYLES) --- */
+        #terminal-view {
+            display: none; /* Hidden until triggered */
+            background-color: #0d0e0d;
+            height: 100%;
+            width: 100%;
             padding: 40px;
             box-sizing: border-box;
-            display: flex;
             flex-direction: column;
+            position: absolute;
+            top: 0; left: 0;
+        }
+        #terminal-view body-mock {
+            color: #39ff14; /* Neon matrix green */
+            font-family: "Courier New", Courier, monospace;
         }
         .scanline {
             background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
@@ -41,6 +103,7 @@
             margin-bottom: 25px;
             font-size: 12px;
             text-transform: uppercase;
+            color: #39ff14;
         }
         .warning-banner {
             border: 1px dashed #39ff14;
@@ -48,29 +111,22 @@
             text-align: center;
             margin-bottom: 25px;
             font-weight: bold;
+            color: #39ff14;
         }
         .entry {
             font-size: 14px;
             line-height: 1.6;
             white-space: pre-wrap;
+            color: #39ff14;
         }
-        
-        /* --- STRICT REDACTION MECHANIC --- */
         .redacted {
             background-color: #000;
             color: #000; 
             border: 1px solid #1a1a1a;
             padding: 0 3px;
         }
-        
-        .redacted::selection {
-            background-color: #39ff14; 
-            color: #000; 
-        }
-        .redacted::-moz-selection {
-            background-color: #39ff14;
-            color: #000;
-        }
+        .redacted::selection { background-color: #39ff14; color: #000; }
+        .redacted::-moz-selection { background-color: #39ff14; color: #000; }
 
         .terminal-prompt {
             margin-top: 40px;
@@ -79,35 +135,99 @@
             font-size: 12px;
             color: #21961b;
         }
-
-        /* --- SUBTLE BOTTOM FOOTER --- */
         .hidden-whisper {
             text-align: center;
-            color: #151815; /* Extremely dark gray against a dark green/black body */
+            color: #151815;
             font-size: 11px;
             margin-top: 60px;
             letter-spacing: 2px;
             user-select: none;
         }
+
+        /* --- BOOT SEQUENCE INTERMEDIARY --- */
+        #boot-screen {
+            display: none;
+            background-color: #000000;
+            color: #39ff14;
+            font-family: monospace;
+            padding: 40px;
+            height: 100%;
+            box-sizing: border-box;
+            position: absolute;
+            top: 0; left: 0; width: 100%;
+        }
     </style>
 </head>
 <body>
 
-<div class="scanline"></div>
+<!-- ========================================== -->
+<!-- LAYER 1: MUNDANE CORPORATE ARCHIVE WEBSITE -->
+<!-- ========================================== -->
+<div id="directory-portal">
+    <h1 id="dir-title">Index of /public/assets/archive</h1>
+    <hr>
+    
+    <!-- Root Directory View -->
+    <pre id="root-dir">
+<a onclick="showViewer('parent')">../</a>
+<span class="dir-item">[DIR]</span> <a onclick="enterFolder('legacy')">restructuring_legacy_1986/</a>     1998-04-03 11:12     -
+<span class="file-item">[TXT]</span> <a onclick="showViewer('hvac')">hvac_maintenance_zone3.log</a>          2025-01-05 09:11    42KB
+<span class="file-item">[PDF]</span> <a onclick="showViewer('osha')">osha_compliance_checklist.pdf</a>       2025-08-22 10:30   212KB
+<span class="file-item">[CSV]</span> <a onclick="showViewer('invoice')">procurement_invoice_7711.csv</a>        2026-03-19 16:45    15KB
+<span class="file-item">[PDF]</span> <a onclick="showViewer('permit')">toronto_facility_elevator_permit.pdf</a>2024-11-12 14:22   1.2MB
+    </pre>
 
-<div class="wrapper">
-    <div class="header-block">
-        ============================================================<br>
-        REGISTRY FILE DESCRIPTOR // ID: 86-SHI-TEXT<br>
-        SYSTEM LOG TIME-STAMP: 11-12-1986 // STATUS: UNLOCKED<br>
-        ============================================================
-    </div>
+    <!-- Hidden Subdirectory View -->
+    <pre id="legacy-dir" style="display: none;">
+<a onclick="enterFolder('root')">../</a>
+<span class="file-item">[LOG]</span> <a onclick="triggerTerminalBoot()">B6-SHI-TEXT.log</a>                     1986-11-12 23:04     4KB
+    </pre>
+    
+    <hr>
+    <address>Apache/2.4.41 (Ubuntu) Server at portal.tearsystems.com Port 80</address>
+</div>
 
-    <div class="warning-banner">
-        *** UNCOMMITTED RESTRUCTURING RECORD -- TRANSCRIPTS ONLY ***
-    </div>
+<!-- ========================================== -->
+<!-- LAYER 2: TEXT VIEWER FOR DUMMY JUNK DATA   -->
+<!-- ========================================== -->
+<div id="file-content-viewer">
+    <div class="back-btn" onclick="closeViewer()">🧾 Return to Directory Listing</div>
+    <pre id="file-raw-text"></pre>
+</div>
 
-    <div class="entry">
+<!-- ========================================== -->
+<!-- LAYER 3: INTERMEDIARY TERMINAL INITIALIZER -->
+<!-- ========================================== -->
+<div id="boot-screen">
+    <pre>
+CONNECT 10.244.81.4 // PORTAL PROTOCOL SECURE RECOVERY...
+LOADING DEPRECATED FILESYSTEM MODULES [OK]
+MOUNTING COLD CORE VOLUME ST1986...
+DECRYPTING FILE DESCRIPTOR: 86-SHI-TEXT...
+STABILIZING GEOMETRIC MATRIX TRANSLATION...
+READY.
+    </pre>
+</div>
+
+<!-- ========================================== -->
+<!-- LAYER 4: THE HORROR TERMINAL (UNTOUCHED)  -->
+<!-- ========================================== -->
+<div id="terminal-view">
+    <div class="scanline"></div>
+
+    <div class="wrapper">
+        <div class="header-block">
+            ============================================================<br>
+            REGISTRY FILE DESCRIPTOR // ID: 86-SHI-TEXT<br>
+            SYSTEM LOG TIME-STAMP: 11-12-1986 // STATUS: UNLOCKED<br>
+            ============================================================
+        </div>
+
+        <div class="warning-banner">
+            * UNCOMMITTED RESTRUCTURING RECORD -- TRANSCRIPTS ONLY *
+        </div>
+
+        <div class="entry">
 [LOG ENTRY BEGINS]
 
 DOCUMENT RE: LIQUIDATION & TRANSITION
@@ -122,17 +242,113 @@ T.E.A.R. SYSTEMS INC.
 ALL CENTRAL <span class="redacted">MANUFACTURING OPERATIONS AND HEAVY PLANT</span> DEPARTMENTS ARE CEASING PRODUCTION. REPURPOSING OF REGIONAL ARCHITECTURAL BOUNDARIES AND <span class="redacted">GEOMETRIC GRIDS</span> IS SCHEDULED TO BEGIN IMMEDIATELY UNDER THE NEW EXECUTIVE BOARD. ALL PRIOR DEPT RECORDS SEALED PER INTERNAL PROTOCOL.
 
 [END OF TRANSCRIPT]
+        </div>
+
+        <div class="terminal-prompt">
+            Awaiting input...<br>
+            _
+        </div>
     </div>
 
-    <div class="terminal-prompt">
-        Awaiting input...<br>
-        _
+    <div class="hidden-whisper">
+        the second echo forgets the original sound
     </div>
 </div>
 
-<div class="hidden-whisper">
-    the second echo forgets the original sound
-</div>
+<!-- ========================================== -->
+<!-- AUTOMATION CONTROLLER                      -->
+<!-- ========================================== -->
+<script>
+    // Handles Folder Browsing
+    function enterFolder(folderName) {
+        const title = document.getElementById('dir-title');
+        const rootDir = document.getElementById('root-dir');
+        const legacyDir = document.getElementById('legacy-dir');
+
+        if (folderName === 'legacy') {
+            title.innerText = "Index of /public/assets/archive/restructuring_legacy_1986";
+            rootDir.style.display = 'none';
+            legacyDir.style.display = 'block';
+        } else {
+            title.innerText = "Index of /public/assets/archive";
+            rootDir.style.display = 'block';
+            legacyDir.style.display = 'none';
+        }
+    }
+
+    // Displays Completely Boring, Long Dummy Files to waste player time
+    function showViewer(fileType) {
+        document.getElementById('directory-portal').style.display = 'none';
+        const viewer = document.getElementById('file-content-viewer');
+        const textBox = document.getElementById('file-raw-text');
+        viewer.style.display = 'block';
+
+        if (fileType === 'hvac') {
+            textBox.innerText = `[2025-01-01 08:00:00] HVAC SYSTEM LOG // ZONE 3 COMPRESSOR STATUS: NOMINAL
+[2025-01-01 12:00:00] Ambient air intake temperature recorded at 68.4 F.
+[2025-01-02 04:15:00] Automated filter pressure alert cleared by Night Shift Maintenance.
+[2025-01-03 09:30:00] Unit 402 reported unusual rattling noise. Defective damper motor replaced.
+[2025-01-05 09:11:00] Routine line pressure optimization sequence complete. Coolant at full capacity.`;
+        } else if (fileType === 'osha') {
+            textBox.innerText = `TEAR SYSTEMS INC. -- OCCUPATIONAL SAFETY AND HEALTH COMPLIANCE GENERAL CHECKLIST
+Document ID: TEAR-OSHA-2025-REV4
+
+1. Emergency exit illumination paths must be kept free of custodial equipment.
+2. Electrical main breaker closets require a minimum of 36 inches clear working space.
+3. Proper mechanical lifting configurations must be practiced when lifting industrial floor buffer gear.
+4. Any unlisted structural variations found on basement levels are to be reported to management immediately. Do not attempt to resolve layout discrepancies with third-party contractor equipment.`;
+        } else if (fileType === 'invoice') {
+            textBox.innerText = `INVOICE #INV-7711-TEAR-CENTRAL
+DATE: 2026-03-19 // TERMS: NET 30
+
+VENDOR: NORTHERN INDUSTRIAL SUPPLY
+SHIP TO: T.E.A.R. SYSTEMS LOGISTICS CENTER (TORONTO HUB)
+
+ITEM ID      DESCRIPTION                               QTY     UNIT PRICE    TOTAL
+----------------------------------------------------------------------------------
+#DS-9902     Commercial Rubber Door Sweeps             500     $12.50        $6,250.00
+#FB-1104     Heavy-Duty Rotational Floor Buffers      12      $840.00       $10,080.00
+#LT-48X      Fluorescent Tube Fixtures (48-Inch)       40      $45.00        $1,800.00
+
+STATUS: INVOICE PAID // TRANSACTION CLOSED.`;
+        } else if (fileType === 'permit') {
+            textBox.innerText = `CITY OF TORONTO -- BUILDING SAFETY DIVISION
+ELEVATOR OPERATIONAL SAFETY CERTIFICATE & PERMIT
+
+Location Code: TEAR-TOR-04921
+Authorized Service Max Load: 4,500 LBS
+Inspected Mechanics License: #7741-B
+
+This documentation confirms that the vertical transport apparatus installed at the primary multi-residential structural grid coordinates has passed baseline weight restrictions. Operational limit set for levels 1 through 12. 
+Notice: Level 13 access configuration restricted via corporate private structural variance. System architecture verified safe for ongoing transit operations.`;
+        } else {
+            textBox.innerText = `HTTP ERROR 403: ACCESS DENIED. 
+You do not have administrative clearance to view parent directory levels.`;
+        }
+    }
+
+    function closeViewer() {
+        document.getElementById('file-content-viewer').style.display = 'none';
+        document.getElementById('directory-portal').style.display = 'block';
+    }
+
+    // Triggers the Dramatic Glitch/Transition Screen into your Lore Document
+    function triggerTerminalBoot() {
+        document.getElementById('directory-portal').style.display = 'none';
+        document.body.style.backgroundColor = '#000000';
+        
+        const bootScreen = document.getElementById('boot-screen');
+        bootScreen.style.display = 'block';
+
+        // Brief cinematic delay to simulate data parsing before showing the green CRT
+        setTimeout(() => {
+            bootScreen.style.display = 'none';
+            const termView = document.getElementById('terminal-view');
+            termView.style.display = 'flex';
+            document.title = "RECOVERY_INDEX_1986_SEC3.LOG";
+        }, 1800);
+    }
+</script>
 
 </body>
 </html>
