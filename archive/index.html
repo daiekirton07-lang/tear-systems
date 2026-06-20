@@ -46,22 +46,27 @@
             line-height: 1.6;
             white-space: pre-wrap;
         }
-        /* --- REDACTION MECHANIC --- */
+        
+        /* --- STRICT REDACTION MECHANIC --- */
         .redacted {
             background-color: #000;
-            color: #000;
+            color: #000; /* Text matches background perfectly */
             border: 1px solid #1a1a1a;
             padding: 0 3px;
-            cursor: pointer;
-            transition: background-color 0.2s, color 0.2s;
-            user-select: all; /* Allows easy highlighting */
         }
-        /* Reveals text when clicked or hovered over */
-        .redacted:active, .redacted:hover {
-            background-color: transparent;
-            color: #39ff14;
+        
+        /* This sets the color of the text ONLY when the user actively selects/highlights it */
+        .redacted::selection {
+            background-color: #39ff14; /* Changes selection box to green */
+            color: #000; /* Makes text pop out in black inside the highlight */
         }
-        /* --- ------------------ --- */
+        /* For different browser types */
+        .redacted::-moz-selection {
+            background-color: #39ff14;
+            color: #000;
+        }
+        /* --- ------------------------- --- */
+
         .terminal-prompt {
             margin-top: 40px;
             border-top: 1px solid #39ff14;
@@ -108,6 +113,10 @@ ALL CENTRAL <span class="redacted">MANUFACTURING OPERATIONS AND HEAVY PLANT</spa
         Awaiting input...<br>
         _
     </div>
+</div>
+
+<div class="hidden-whisper">
+    the second echo forgets the original sound
 </div>
 
 </body>
