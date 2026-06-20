@@ -9,13 +9,13 @@
             height: 100%;
             margin: 0;
             padding: 0;
-            background-color: #ffffff; /* Starts as clean, boring white */
+            background-color: #ffffff;
             color: #000000;
             font-family: monospace;
             box-sizing: border-box;
         }
 
-        /* --- STATE: BORING APACHE DIRECTORY --- */
+        /* --- STATE: MASSIVE APACHE DIRECTORY --- */
         #directory-portal {
             padding: 20px;
             display: block;
@@ -30,8 +30,8 @@
             margin: 10px 0;
         }
         #directory-portal pre {
-            font-size: 14px;
-            line-height: 1.5;
+            font-size: 13px;
+            line-height: 1.6;
         }
         #directory-portal a {
             color: #0000ee;
@@ -41,6 +41,22 @@
         #directory-portal a:hover {
             text-decoration: underline;
         }
+        
+        /* Dead/Offline Link Styling */
+        .dead-link {
+            color: #555555;
+            text-decoration: none;
+            cursor: default;
+        }
+        
+        /* Inline Directory Redactions */
+        .dir-redacted {
+            background-color: #000000;
+            color: #000000;
+            user-select: none;
+            padding: 0 2px;
+        }
+
         #directory-portal address {
             font-size: 0.9em;
             font-style: italic;
@@ -64,9 +80,9 @@
             text-decoration: underline;
         }
 
-        /* --- STATE: HORROR TERMINAL (YOUR ORIGINAL STYLES) --- */
+        /* --- STATE: HORROR TERMINAL --- */
         #terminal-view {
-            display: none; /* Hidden until triggered */
+            display: none; 
             background-color: #0d0e0d;
             height: 100%;
             width: 100%;
@@ -75,17 +91,14 @@
             flex-direction: column;
             position: absolute;
             top: 0; left: 0;
-        }
-        #terminal-view body-mock {
-            color: #39ff14; /* Neon matrix green */
-            font-family: "Courier New", Courier, monospace;
+            z-index: 20;
         }
         .scanline {
             background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
             background-size: 100% 4px, 6px 100%;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 10;
+            z-index: 30;
             pointer-events: none;
         }
         .wrapper {
@@ -134,6 +147,13 @@
             padding-top: 15px;
             font-size: 12px;
             color: #21961b;
+            display: flex;
+            justify-content: space-between;
+        }
+        .terminal-exit-btn {
+            color: #39ff14;
+            text-decoration: underline;
+            cursor: pointer;
         }
         .hidden-whisper {
             text-align: center;
@@ -144,7 +164,7 @@
             user-select: none;
         }
 
-        /* --- BOOT SEQUENCE INTERMEDIARY --- */
+        /* --- INTERMEDIARY BOOT SCREEN --- */
         #boot-screen {
             display: none;
             background-color: #000000;
@@ -155,13 +175,14 @@
             box-sizing: border-box;
             position: absolute;
             top: 0; left: 0; width: 100%;
+            z-index: 25;
         }
     </style>
 </head>
 <body>
 
 <!-- ========================================== -->
-<!-- LAYER 1: MUNDANE CORPORATE ARCHIVE WEBSITE -->
+<!-- LAYER 1: MASSIVE PUBLIC INFORMATION PORTAL -->
 <!-- ========================================== -->
 <div id="directory-portal">
     <h1 id="dir-title">Index of /public/assets/archive</h1>
@@ -170,17 +191,34 @@
     <!-- Root Directory View -->
     <pre id="root-dir">
 <a onclick="showViewer('parent')">../</a>
-<span class="dir-item">[DIR]</span> <a onclick="enterFolder('legacy')">restructuring_legacy_1986/</a>     1998-04-03 11:12     -
-<span class="file-item">[TXT]</span> <a onclick="showViewer('hvac')">hvac_maintenance_zone3.log</a>          2025-01-05 09:11    42KB
-<span class="file-item">[PDF]</span> <a onclick="showViewer('osha')">osha_compliance_checklist.pdf</a>       2025-08-22 10:30   212KB
-<span class="file-item">[CSV]</span> <a onclick="showViewer('invoice')">procurement_invoice_7711.csv</a>        2026-03-19 16:45    15KB
-<span class="file-item">[PDF]</span> <a onclick="showViewer('permit')">toronto_facility_elevator_permit.pdf</a>2024-11-12 14:22   1.2MB
+<span class="dir-item">[DIR]</span> <a onclick="enterFolder('legacy')">restructuring_legacy_1986/</a>             1998-04-03 11:12     -
+<span class="dir-item">[DIR]</span> <span class="dead-link">grid_monitoring_2003_fallback/</span>        2003-08-15 01:22     -
+<span class="dir-item">[DIR]</span> <span class="dead-link">zoning_blueprints_toronto_east/</span>       2014-05-19 09:44     -
+<span class="dir-item">[DIR]</span> <span class="dir-redacted">███████████████████████████████/</span>      1985-10-31 00:00     -
+<span class="file-item">[TXT]</span> <a onclick="showViewer('hvac')">hvac_maintenance_zone3.log</a>            2025-01-05 09:11    42KB
+<span class="file-item">[PDF]</span> <a onclick="showViewer('osha')">osha_compliance_checklist.pdf</a>         2025-08-22 10:30   212KB
+<span class="file-item">[CSV]</span> <a onclick="showViewer('invoice')">procurement_invoice_7711.csv</a>          2026-03-19 16:45    15KB
+<span class="file-item">[PDF]</span> <a onclick="showViewer('permit')">toronto_facility_elevator_permit.pdf</a>  2024-11-12 14:22   1.2MB
+<span class="file-item">[TXT]</span> <span class="dead-link">concrete_mix_slurry_specs_v2.txt</span>      2023-04-11 11:02    18KB
+<span class="file-item">[CSV]</span> <a onclick="showViewer('freight')">regional_freight_manifest_midwest.csv</a> 2026-02-10 13:14   188KB
+<span class="file-item">[SYS]</span> <span class="dead-link">grid_load_balance_anchor_09.sys</span>       2026-05-01 03:40   412KB
+<span class="file-item">[TXT]</span> <span class="dead-link">property_mgmt_onboarding_template.txt</span> 2025-10-20 16:25    24KB
+<span class="file-item">[PDF]</span> <span class="dir-redacted">██████████████████████████████.pdf</span>    2004-09-26 12:00   8.4MB
+<span class="file-item">[TXT]</span> <span class="dead-link">substation_b_regression_event.log</span>     2026-04-12 04:12     8KB
+<span class="file-item">[CONF]</span><span class="dead-link">network_scrub_firmware_manifest.conf</span> 2024-07-02 08:15    12KB
+<span class="file-item">[TXT]</span> <span class="dead-link">tenant_noise_complaint_log_1204.txt</span>   2025-12-01 22:18     4KB
+<span class="file-item">[CSV]</span> <span class="dead-link">bulk_agricultural_feedstone_Q1.csv</span>   2026-01-15 10:05    95KB
+<span class="file-item">[PDF]</span> <span class="dead-link">structural_load_optical_anomaly.pdf</span>   2024-03-14 15:30   3.1MB
+<span class="file-item">[TXT]</span> <span class="dead-link">deadbolt_hardware_distribution.txt</span>    2025-06-18 09:12    14KB
     </pre>
 
-    <!-- Hidden Subdirectory View -->
+    <!-- Subdirectory View (1986 Legacy) -->
     <pre id="legacy-dir" style="display: none;">
 <a onclick="enterFolder('root')">../</a>
-<span class="file-item">[LOG]</span> <a onclick="triggerTerminalBoot()">B6-SHI-TEXT.log</a>                     1986-11-12 23:04     4KB
+<span class="file-item">[LOG]</span> <a onclick="triggerTerminalBoot()">B6-SHI-TEXT.log</a>                       1986-11-12 23:04     4KB
+<span class="file-item">[SYS]</span> <span class="dead-link">SHI_core_liquidation_balance.sys</span>     1986-11-01 09:00   720KB
+<span class="file-item">[TXT]</span> <span class="dir-redacted">██████████████████████████████.txt</span>    1985-04-12 14:10    32KB
+<span class="file-item">[TXT]</span> <span class="dead-link">executive_board_transition_memo.txt</span>   1986-11-05 10:15    16KB
     </pre>
     
     <hr>
@@ -210,7 +248,7 @@ READY.
 </div>
 
 <!-- ========================================== -->
-<!-- LAYER 4: THE HORROR TERMINAL (UNTOUCHED)  -->
+<!-- LAYER 4: THE HORROR TERMINAL               -->
 <!-- ========================================== -->
 <div id="terminal-view">
     <div class="scanline"></div>
@@ -232,7 +270,7 @@ READY.
 
 DOCUMENT RE: LIQUIDATION & TRANSITION
 
-NOTICE IS HEREBY GIVEN THAT EFFECTIVE OCTOBER 31, 1986, STERLING HEAVY INDUSTRIES HAS CONCLUDED THE INDEPENDENT LIQUIDATION OF ALL <span class="redacted">PREVIOUS INDUSTRIAL MANUFACTURING MACHINERY AND EQUIPMENT SECTORS.</span> 
+NOTICE IS HEREBY GIVEN THAT EFFECTIVE OCTOBER 31, 1986, STERLING HEAVY INDUSTRIES HAS CONCLUDED THE INDEPENDENT LIQUIDATION OF ALL <span class="redacted">PREVIOUS INDUSTRIAL MANUFACTURING MANUFACTURING MACHINERY AND EQUIPMENT SECTORS.</span> 
 
 PURSUANT TO THE PRIVATE ACQUISITION CLAUSE DIRECTED BY <span class="redacted">NEW CORPORATE MANAGEMENT, 100% OF REMAINING PHYSICAL ASSETS, PROPERTY HOLDINGS, AND REGIONAL PIPELINES</span> HAVE BEEN TRANSFERRED DIRECTLY TO THE NEWLY FORMED ENTITY: 
 
@@ -245,8 +283,9 @@ ALL CENTRAL <span class="redacted">MANUFACTURING OPERATIONS AND HEAVY PLANT</spa
         </div>
 
         <div class="terminal-prompt">
-            Awaiting input...<br>
-            _
+            <span>Awaiting input... _</span>
+            <!-- Way back option from inside the green terminal -->
+            <span class="terminal-exit-btn" onclick="exitTerminal()">[ DISCONNECT / EXIT ]</span>
         </div>
     </div>
 
@@ -259,7 +298,7 @@ ALL CENTRAL <span class="redacted">MANUFACTURING OPERATIONS AND HEAVY PLANT</spa
 <!-- AUTOMATION CONTROLLER                      -->
 <!-- ========================================== -->
 <script>
-    // Handles Folder Browsing
+    // Handles Folder Navigation
     function enterFolder(folderName) {
         const title = document.getElementById('dir-title');
         const rootDir = document.getElementById('root-dir');
@@ -276,7 +315,7 @@ ALL CENTRAL <span class="redacted">MANUFACTURING OPERATIONS AND HEAVY PLANT</spa
         }
     }
 
-    // Displays Completely Boring, Long Dummy Files to waste player time
+    // Handles Dummy File Text Injection
     function showViewer(fileType) {
         document.getElementById('directory-portal').style.display = 'none';
         const viewer = document.getElementById('file-content-viewer');
@@ -321,6 +360,17 @@ Inspected Mechanics License: #7741-B
 
 This documentation confirms that the vertical transport apparatus installed at the primary multi-residential structural grid coordinates has passed baseline weight restrictions. Operational limit set for levels 1 through 12. 
 Notice: Level 13 access configuration restricted via corporate private structural variance. System architecture verified safe for ongoing transit operations.`;
+        } else if (fileType === 'freight') {
+            textBox.innerText = `CENTRAL FREIGHT DISPATCH MANIFEST // REGION CENTRAL-MIDWEST
+TRACKING STATUS: CLOSED // RE-ROUTED TO HEADQUARTERS HUB
+
+CARGO ID    TYPE            WEIGHT (OUTBOUND)   WEIGHT (TERMINAL INTAKE)   DISCREPANCY NOTES
+------------------------------------------------------------------------------------------------
+#FR-9102    GRAIN BULK      180,000 LBS         0 LBS                      *SCALE ERROR VALUE UNRESOLVED
+#FR-9109    LIVESTOCK       220,000 LBS         0 LBS                      *MASS VARIANCE OUTSIDE BLUEPRINT
+#FR-9200    RAW INDUSTRIAL  140,000 LBS         140,000 LBS                NOMINAL BALANCE
+
+*System Note: Gravity metrics failed to sync at loading docks. Security override applied per order of Executive Board.*`;
         } else {
             textBox.innerText = `HTTP ERROR 403: ACCESS DENIED. 
 You do not have administrative clearance to view parent directory levels.`;
@@ -332,7 +382,7 @@ You do not have administrative clearance to view parent directory levels.`;
         document.getElementById('directory-portal').style.display = 'block';
     }
 
-    // Triggers the Dramatic Glitch/Transition Screen into your Lore Document
+    // Triggers Green Terminal Sequence
     function triggerTerminalBoot() {
         document.getElementById('directory-portal').style.display = 'none';
         document.body.style.backgroundColor = '#000000';
@@ -340,13 +390,23 @@ You do not have administrative clearance to view parent directory levels.`;
         const bootScreen = document.getElementById('boot-screen');
         bootScreen.style.display = 'block';
 
-        // Brief cinematic delay to simulate data parsing before showing the green CRT
         setTimeout(() => {
             bootScreen.style.display = 'none';
             const termView = document.getElementById('terminal-view');
             termView.style.display = 'flex';
             document.title = "RECOVERY_INDEX_1986_SEC3.LOG";
-        }, 1800);
+        }, 1500);
+    }
+
+    // Returns Player from Terminal straight back to the Legacy Directory View
+    function exitTerminal() {
+        document.getElementById('terminal-view').style.display = 'none';
+        document.body.style.backgroundColor = '#ffffff';
+        document.title = "Index of /public/assets/archive";
+        
+        // Ensure they go straight back to the active legacy directory section
+        document.getElementById('directory-portal').style.display = 'block';
+        enterFolder('legacy');
     }
 </script>
 
