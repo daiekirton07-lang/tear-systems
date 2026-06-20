@@ -6,570 +6,490 @@
     <title>T.E.A.R. Systems Inc. | Property Management</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Sharp, geometric professional font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            --primary: #090d16;       
-            --secondary: #111827;     
-            --accent: #2563eb;        
-            --accent-hover: #1d4ed8;  
-            --bg-main: #fbfcfd;       /* Mathematically sterile off-white */
-            --text-main: #1e293b;     
-            --text-muted: #64748b;    
-            --radius: 0px;            /* Sharp, absolute 90-degree geometric precision */
-            --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        html { 
+        html {
             scroll-behavior: smooth;
-            /* Subtle layout compression to induce micro-dizziness on long scrolls */
-            letter-spacing: -0.01em;
         }
-
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            line-height: 1.65;
-            -webkit-font-smoothing: antialiased;
+            background-color: #fafafa; /* Sterile, clean gallery gallery white */
+            color: #1a1a1a;
+            line-height: 1.6;
+            letter-spacing: -0.01em;
         }
-
         header {
-            background-color: rgba(9, 13, 22, 0.95);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            background-color: #000000; /* Stark black */
             color: white;
-            padding: 20px 5%;
+            padding: 24px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-
         header h1 {
             margin: 0;
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            cursor: pointer;
         }
-
         nav a {
-            color: #64748b;
+            color: #a3a3a3;
             text-decoration: none;
-            margin-left: 28px;
+            margin-left: 24px;
             font-weight: 500;
             font-size: 13px;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            transition: var(--transition);
+            transition: color 0.2s;
         }
-
-        nav a:hover { color: white; }
-
+        nav a:hover {
+            color: white;
+        }
         .hero {
-            position: relative;
-            background-image: linear-gradient(rgba(9, 13, 22, 0.75), rgba(9, 13, 22, 0.95)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
             color: white;
-            padding: 180px 40px;
+            padding: 140px 40px;
             text-align: center;
         }
-
         .hero h2 {
-            font-size: 44px;
-            font-weight: 700;
-            letter-spacing: -1.5px;
-            margin-bottom: 16px;
+            font-size: 38px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
             text-transform: uppercase;
         }
-
         .hero p {
             font-size: 16px;
-            color: #94a3b8;
-            max-width: 600px;
+            color: #d4d4d4;
+            max-width: 650px;
             margin: 0 auto;
             font-weight: 300;
-            letter-spacing: 0.02em;
         }
-
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 80px 24px;
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 0 24px;
         }
-
         .section {
             background: white;
-            padding: 50px;
-            margin-bottom: 32px;
-            border: 1px solid #e2e8f0;
-            position: relative;
+            padding: 45px;
+            margin-bottom: 40px;
+            border: 1px solid #e5e5e5;
+            border-radius: 0px; /* Harsh geometric precision */
         }
-
         h3 {
-            color: var(--primary);
-            font-size: 22px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
+            color: #000000;
+            padding-bottom: 12px;
             margin-top: 0;
-            margin-bottom: 24px;
+            font-size: 20px;
+            font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid #e5e5e5;
         }
-
-        /* The Grid: Designed with sharp, slightly unnatural alignment bounds */
-        .grid {
+        
+        /* Google Reviews Widget Simulation */
+        .reviews-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 1px; /* Razor thin geometric separating grid lines */
-            background-color: #e2e8f0;
-            border: 1px solid #e2e8f0;
-            margin-top: 32px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
         }
-
-        .card {
-            background: white;
-            padding: 30px 24px;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .card:hover {
-            background: #f8fafc;
-            /* Micro-shift to simulate perfect mechanical seating */
-            transform: scale(0.995); 
-            box-shadow: inset 0 0 0 1px var(--accent);
-        }
-
-        .card strong {
-            display: block;
-            color: var(--primary);
-            font-size: 15px;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            margin-bottom: 6px;
-        }
-
-        .card small {
-            color: var(--text-muted);
-            font-weight: 400;
+        .review-card {
+            background: #fbfbfb;
+            border: 1px solid #e5e5e5;
+            padding: 20px;
             font-size: 13px;
         }
-
-        .card .telemetry {
-            margin-top: 20px;
-            font-family: monospace;
-            font-size: 10px;
-            color: #94a3b8;
-            letter-spacing: 0.05em;
+        .review-header {
             display: flex;
             justify-content: space-between;
-            border-top: 1px dashed #e2e8f0;
-            padding-top: 8px;
+            color: #737373;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .stars { color: #f59e0b; margin-bottom: 8px; font-size: 14px; }
+
+        /* Property Listings Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+        .card {
+            background: white;
+            border: 1px solid #e5e5e5;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            filter: grayscale(20%); /* Subtle cold desaturation */
+        }
+        .card-content {
+            padding: 20px;
+        }
+        .price {
+            font-size: 20px;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 5px;
+        }
+        .card-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 0 0 8px 0;
+        }
+        .card-desc {
+            font-size: 13px;
+            color: #525252;
+            margin: 0;
         }
 
+        /* Forms & Interactive Components */
         .two-column {
             display: grid;
-            grid-template-columns: 1.15fr 0.85fr;
-            gap: 32px;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 30px;
         }
-
-        @media (max-width: 900px) {
+        @media (max-width: 768px) {
             .two-column { grid-template-columns: 1fr; }
-            .hero h2 { font-size: 32px; }
         }
-
-        .job-list { margin-top: 24px; }
+        .job-list {
+            margin-top: 20px;
+        }
         .job-item {
-            padding: 24px 0;
-            border-bottom: 1px solid #e2e8f0;
+            padding: 20px 0;
+            border-bottom: 1px solid #f0f0f0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 16px;
         }
-        .job-item:last-child { border-bottom: none; }
-
+        .job-item:last-child {
+            border-bottom: none;
+        }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #404040;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            box-sizing: border-box;
+            border: 1px solid #d4d4d4;
+            border-radius: 0px;
+            font-family: inherit;
+            font-size: 14px;
+            background-color: #fafafa;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #000000;
+            background-color: #ffffff;
+        }
+        .checkbox-group {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            font-size: 11px;
+            color: #737373;
+            line-height: 1.4;
+        }
+        .checkbox-group input {
+            margin-top: 2px;
+            width: auto;
+        }
         .btn {
-            background-color: var(--primary);
+            background-color: #000000;
             color: white;
-            padding: 16px 24px;
+            padding: 14px 20px;
             border: none;
+            border-radius: 0px;
+            width: 100%;
             cursor: pointer;
             font-weight: 600;
-            font-size: 13px;
+            font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            transition: var(--transition);
+            transition: background-color 0.2s;
         }
-        .btn:hover { background-color: var(--accent); }
-
+        .btn:hover {
+            background-color: #262626;
+        }
         .btn-secondary {
-            background-color: #f1f5f9;
-            color: var(--primary);
-            padding: 10px 20px;
+            background-color: #ffffff;
+            color: #000000;
+            padding: 8px 16px;
+            border: 1px solid #000000;
+            border-radius: 0px;
             text-decoration: none;
             font-size: 12px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.02em;
-            transition: var(--transition);
-            border: 1px solid #e2e8f0;
+            transition: all 0.2s;
         }
-        .btn-secondary:hover { background-color: var(--primary); color: white; border-color: var(--primary); }
-
-        .form-group { margin-bottom: 24px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary); }
-        .form-group input {
-            width: 100%; padding: 14px 16px; box-sizing: border-box; border: 1px solid #cbd5e1;
-            font-family: inherit; font-size: 14px; transition: var(--transition); background-color: #f8fafc;
+        .btn-secondary:hover {
+            background-color: #000000;
+            color: white;
         }
-        .form-group input:focus { outline: none; border-color: var(--primary); background-color: white; }
-
-        /* PROPERTY DETAIL DYNAMIC VIEW */
-        .hidden { display: none !important; }
-        
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 500;
+        footer {
+            background-color: #000000;
+            color: #a3a3a3;
+            padding: 60px 40px 30px;
             font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 32px;
-            cursor: pointer;
+            margin-top: 100px;
         }
-        .back-btn:hover { color: var(--primary); }
-
-        .building-header {
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
             flex-wrap: wrap;
-            gap: 20px;
-            margin-bottom: 40px;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 24px;
+            gap: 30px;
         }
-
-        .building-title h2 { margin: 0; font-size: 28px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: -0.5px; }
-        .building-title p { margin: 6px 0 0; color: var(--text-muted); font-size: 14px; font-weight: 400; }
-
-        .building-grid {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 40px;
+        .footer-section {
+            min-width: 220px;
         }
-
-        @media (max-width: 850px) {
-            .building-grid { grid-template-columns: 1fr; }
+        .footer-section h4 {
+            color: white;
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 0.05em;
         }
-
-        .tabs { display: flex; border-bottom: 1px solid #e2e8f0; margin-bottom: 32px; gap: 32px; }
-        .tab { padding-bottom: 16px; color: var(--text-muted); cursor: pointer; font-weight: 500; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid transparent; transition: var(--transition); }
-        .tab.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 700; }
-
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-
-        .spec-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-        .spec-item { background: #f8fafc; padding: 16px; border: 1px solid #e2e8f0; }
-        .spec-item label { display: block; font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
-        .spec-item span { font-weight: 600; color: var(--primary); font-size: 14px; font-family: monospace; }
-
-        footer {
-            background-color: var(--primary); color: #475569; padding: 80px 40px 40px; font-size: 13px; margin-top: 120px;
-            border-top: 1px solid rgba(255, 255, 255, 0.02);
+        .footer-section p {
+            margin: 0;
+            line-height: 1.8;
         }
-        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
-        .footer-section { min-width: 250px; }
-        .footer-section h4 { color: #94a3b8; font-size: 13px; margin-top: 0; margin-bottom: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
-        .footer-section p { margin: 0; line-height: 1.8; }
-        .footer-bottom { max-width: 1200px; margin: 60px auto 0; text-align: center; padding-top: 30px; border-top: 1px solid #1e293b; font-size: 11px; color: #334155; font-family: monospace; letter-spacing: 0.02em; }
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 40px auto 0;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #262626;
+            font-size: 12px;
+            color: #525252;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Context Meta Data Container for Potential ARG Parsing Tools -->
-    <meta name="spatial-matrix" content="T-154.009.C">
-
     <header>
-        <h1 onclick="showDashboard()">T.E.A.R. Systems Inc.</h1>
+        <h1>T.E.A.R. Systems Inc.</h1>
         <nav>
-            <a href="#about" onclick="showDashboard()">Overview</a>
-            <a href="#portfolio" onclick="showDashboard()">Assets</a>
-            <a href="#careers" onclick="showDashboard()">Allocations</a>
-            <a href="#contact" onclick="showDashboard()">Inquiries</a>
-            <a href="#portal" onclick="showDashboard()">Terminal</a>
+            <a href="#about">About Us</a>
+            <a href="#portfolio">Rentals</a>
+            <a href="#careers">Careers</a>
+            <a href="#contact">Contact</a>
+            <a href="#portal">Resident Portal</a>
         </nav>
     </header>
 
-    <!-- MAIN DASHBOARD VIEW -->
-    <div id="main-view">
-        <div class="hero">
-            <h2>Building Beyond Boundaries</h2>
-            <p>Premium corporate infrastructure and multi-family residential operations across Canada's expanding urban landscapes.</p>
-        </div>
-
-        <div class="container">
-            <!-- ABOUT SECTION -->
-            <div id="about" class="section">
-                <h3>Corporate Profile</h3>
-                <p>Founded on a commitment to architectural precision and structural integrity, T.E.A.R. Systems Inc. delivers industry-leading management for commercial and high-density residential properties. Our operational philosophy pairs modern tenant frameworks with specialized environmental optimization, ensuring absolute consistency, geometric efficiency, and continuity across all regional assets.</p>
-                <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1000&q=80" alt="T.E.A.R. Asset Hub Standard" style="width:100%; max-height:360px; object-fit:cover; border-radius:var(--radius); margin-top:32px; filter: grayscale(15%);">
-            </div>
-
-            <!-- PORTFOLIO SECTION -->
-            <div id="portfolio" class="section">
-                <h3>Regional Holdings</h3>
-                <p>Our portfolio includes primary multi-unit residential complexes and commercial spaces located strategically within Canada's primary economic zones. Select an asset below to explore building profiles:</p>
-                
-                <div class="grid" id="holdings-grid">
-                    <!-- Cards equipped with subtle corporate telemetry readouts (ARG Hooks) -->
-                    <div class="card" onclick="openBuilding('Toronto Regional Hub', 'The Toronto Plaza', 'https://images.unsplash.com/photo-1554469384-e58fac16e23a?auto=format&fit=crop&w=800&q=80', 'NODE-416', 'HZ: 20.4')">
-                        <div><strong>Toronto Regional Hub</strong><small>The Toronto Plaza</small></div>
-                        <div class="telemetry"><span>SYS: NODE-416</span><span>20.4 Hz</span></div>
-                    </div>
-                    <div class="card" onclick="openBuilding('Montreal District', 'The Montreal Court', 'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=800&q=80', 'NODE-514', 'HZ: 20.1')">
-                        <div><strong>Montreal District</strong><small>The Montreal Court</small></div>
-                        <div class="telemetry"><span>SYS: NODE-514</span><span>20.1 Hz</span></div>
-                    </div>
-                    <div class="card" onclick="openBuilding('Calgary Holdings', 'The Calgary Hub', 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=800&q=80', 'NODE-403', 'HZ: 19.8')">
-                        <div><strong>Calgary Holdings</strong><small>The Calgary Hub</small></div>
-                        <div class="telemetry"><span>SYS: NODE-403</span><span>19.8 Hz</span></div>
-                    </div>
-                    <div class="card" onclick="openBuilding('Ottawa Executive', 'The Ottawa Center', 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80', 'NODE-613', 'HZ: 20.0')">
-                        <div><strong>Ottawa Executive</strong><small>The Ottawa Center</small></div>
-                        <div class="telemetry"><span>SYS: NODE-613</span><span>20.0 Hz</span></div>
-                    </div>
-                    <div class="card" onclick="openBuilding('Edmonton Branch', 'The Edmonton Hub', 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80', 'NODE-780', 'HZ: 19.5')">
-                        <div><strong>Edmonton Branch</strong><small>The Edmonton Hub</small></div>
-                        <div class="telemetry"><span>SYS: NODE-780</span><span>19.5 Hz</span></div>
-                    </div>
-                    <div class="card" onclick="openBuilding('Winnipeg Operations', 'The Winnipeg Center', 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80', 'NODE-204', 'HZ: 22.1')">
-                        <div><strong>Winnipeg Operations</strong><small>The Winnipeg Center</small></div>
-                        <div class="telemetry"><span>SYS: NODE-204</span><span>22.1 Hz</span></div>
-                    </div>
-                    <div class="card" onclick="openBuilding('Vancouver Waterfront', 'The Vancouver Tower', 'https://images.unsplash.com/photo-1768407683043-c20617ce86b7?auto=format&fit=crop&w=800&q=80', 'NODE-604', 'HZ: 20.0')">
-                        <div><strong>Vancouver Waterfront</strong><small>The Vancouver Tower</small></div>
-                        <div class="telemetry"><span>SYS: NODE-604</span><span>20.0 Hz</span></div>
-                    </div>
-                    <div class="card" onclick="openBuilding('Quebec Central', 'The Quebec Plaza', 'https://images.unsplash.com/photo-1554469384-e58fac16e23a?auto=format&fit=crop&w=800&q=80', 'NODE-418', 'HZ: 19.9')">
-                        <div><strong>Quebec Central</strong><small>The Quebec Plaza</small></div>
-                        <div class="telemetry"><span>SYS: NODE-418</span><span>19.9 Hz</span></div>
-                    </div>
-                    <div class="card" onclick="openBuilding('Halifax Atlantic', 'The Halifax Court', 'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=800&q=80', 'NODE-902', 'HZ: 20.2')">
-                        <div><strong>Halifax Atlantic</strong><small>The Halifax Court</small></div>
-                        <div class="telemetry"><span>SYS: NODE-902</span><span>20.2 Hz</span></div>
-                    </div>
-                    <div class="card" onclick="openBuilding('London District', 'The London Square', 'https://images.unsplash.com/photo-1515263487990-61b07816b324?auto=format&fit=crop&w=800&q=80', 'NODE-519', 'HZ: 20.0')">
-                        <div><strong>London District</strong><small>The London Square</small></div>
-                        <div class="telemetry"><span>SYS: NODE-519</span><span>20.0 Hz</span></div>
-                    </div>
-                    <div class="card" onclick="openBuilding('Saskatoon Hub', 'The Saskatoon Hub', 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80', 'NODE-306', 'HZ: 19.7')">
-                        <div><strong>Saskatoon Hub</strong><small>The Saskatoon Hub</small></div>
-                        <div class="telemetry"><span>SYS: NODE-306</span><span>19.7 Hz</span></div>
-                    </div>
-                    <div class="card" onclick="openBuilding('Regina Sector', 'The Regina Tower', 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80', 'NODE-306-B', 'HZ: 19.6')">
-                        <div><strong>Regina Sector</strong><small>The Regina Tower</small></div>
-                        <div class="telemetry"><span>SYS: NODE-306-B</span><span>19.6 Hz</span></div>
-                    </div>
-                    <div class="card" onclick="openBuilding('Victoria Pacific', 'The Victoria Crest', 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80', 'NODE-250', 'HZ: 20.3')">
-                        <div><strong>Victoria Pacific</strong><small>The Victoria Crest</small></div>
-                        <div class="telemetry"><span>SYS: NODE-250</span><span>20.3 Hz</span></div>
-                    </div>
-                    <div class="card" onclick="openBuilding('St. John\'s Outpost', 'The St. John\'s Crest', 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=800&q=80', 'NODE-709', 'HZ: 21.0')">
-                        <div><strong>St. John's Outpost</strong><small>The St. John's Crest</small></div>
-                        <div class="telemetry"><span>SYS: NODE-709</span><span>21.0 Hz</span></div>
-                    </div>
-                    <div class="card" onclick="openBuilding('Fredericton Square', 'The Fredericton Plaza', 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80', 'NODE-506', 'HZ: 20.0')">
-                        <div><strong>Fredericton Square</strong><small>The Fredericton Plaza</small></div>
-                        <div class="telemetry"><span>SYS: NODE-506</span><span>20.0 Hz</span></div>
-                    </div>
-                    <div class="card" onclick="openBuilding('Charlottetown Unit', 'The Charlottetown Center', 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80', 'NODE-902-B', 'HZ: 19.9')">
-                        <div><strong>Charlottetown Unit</strong><small>The Charlottetown Center</small></div>
-                        <div class="telemetry"><span>SYS: NODE-902-B</span><span>19.9 Hz</span></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TWO COLUMN LAYOUT FOR CAREERS & CONTACT -->
-            <div class="two-column">
-                <div id="careers" class="section">
-                    <h3>Asset Allocations</h3>
-                    <p>Join an operating matrix dedicated to long-term architectural continuity and structural equilibrium.</p>
-                    <div class="job-list">
-                        <div class="job-item">
-                            <div><strong>Property Administrator</strong><br><small>Toronto, ON • Full-Time</small></div>
-                            <a href="#" class="btn-secondary" onclick="triggerSystemHold('ERR-ALOC-416'); return false;">Apply</a>
-                        </div>
-                        <div class="job-item">
-                            <div><strong>Junior Systems Inspector</strong><br><small>Winnipeg, MB • Full-Time</small></div>
-                            <a href="#" class="btn-secondary" onclick="triggerSystemHold('ERR-ALOC-204'); return false;">Apply</a>
-                        </div>
-                        <div class="job-item">
-                            <div><strong>Environmental Monitor</strong><br><small>Regional Allocations • Varied</small></div>
-                            <a href="#" class="btn-secondary" onclick="triggerSystemHold('ERR-ALOC-VARY'); return false;">Apply</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="contact" class="section" style="display: flex; flex-direction: column; justify-content: center;">
-                    <h3>Inquiry Routing Queue</h3>
-                    <p>For administrative distribution, baseline alignment data, or to log mechanical asset degradation, route your documentation to the central terminal queue:</p>
-                    <p style="font-weight: 600; font-size: 15px; margin: 24px 0; text-align: center; font-family: monospace;">
-                        ✉️ <a href="mailto:tear.management54@gmail.com" style="color: var(--accent); text-decoration: none;">tear.management54@gmail.com</a>
-                    </p>
-                    <p style="color: var(--text-muted); font-size: 12px; text-align: center; line-height: 1.6; margin: 0;">
-                        <em>Notice: Incoming transmissions are triaged automatically by priority criteria. Do not resubmit identical strings within a 72-hour window.</em>
-                    </p>
-                </div>
-            </div>
-
-            <!-- PORTAL SECTION -->
-            <div id="portal" class="section">
-                <h3 style="text-align: center;">System Terminal</h3>
-                <p style="text-align: center; color: var(--text-muted); font-size: 13px; margin-bottom: 32px;">Secure administrative gateway for verified occupants and technical personnel.</p>
-                <form style="max-width: 340px; margin: 0 auto;" onsubmit="triggerPortalRejection(); return false;">
-                    <div class="form-group">
-                        <label>Unit Allocation ID</label>
-                        <input type="text" placeholder="EX: TRO-9901" id="portal-unit" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Secure System Key</label>
-                        <input type="password" placeholder="••••••••" id="portal-key" required>
-                    </div>
-                    <button type="submit" class="btn" style="width: 100%;">Initialize Connection Link</button>
-                </form>
-            </div>
-        </div>
+    <div class="hero">
+        <h2>Pristine Residential Architecture</h2>
+        <p>Premium property management and leasing operations across Western Canada's most innovative urban developments.</p>
     </div>
 
-    <!-- DYNAMIC PROPERTY EXPLORER VIEW -->
-    <div id="property-view" class="container hidden">
-        <div class="back-btn" onclick="showDashboard()">← Return to Corporate View</div>
+    <div class="container">
         
-        <div class="section">
-            <div class="building-header">
-                <div class="building-title">
-                    <h2 id="dyn-title">Building Name</h2>
-                    <p id="dyn-subtitle">Sub-complex identifier</p>
+        <!-- ABOUT SECTION -->
+        <div id="about" class="section">
+            <h3>About Our Company</h3>
+            <p>T.E.A.R. Systems Inc. is intently focused on serving both investment owners and residential tenants across our growing network. Voted a premier choice for high-density modern housing management, we are dedicated to a corporate culture of superior customer service, prompt physical maintenance, and exceptional operational efficiency.</p>
+            <p>Our leasing pipeline pairs traditional management oversight with impeccably designed, geometrically precise structures optimized for uniform residential comfort and aesthetic consistency.</p>
+            
+            <!-- GOOGLE REVIEWS INTEGRATION -->
+            <h4 style="margin-top: 40px; margin-bottom: 10px; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em;">Latest Google Reviews</h4>
+            <div class="reviews-container">
+                <div class="review-card">
+                    <div class="review-header"><span>Igor S.</span><span>2026-03-20</span></div>
+                    <div class="stars">★★★★★</div>
+                    <p style="margin: 0; font-style: italic;">"Highly recommend! Very professional team."</p>
                 </div>
-                <button class="btn-secondary" style="padding: 12px 24px" onclick="alert('Routing Notice: Vacancy assignment metrics for this asset are restricted to internal structural loops.')">Request Placement Data</button>
-            </div>
-
-            <div class="building-grid">
-                <div>
-                    <div class="tabs">
-                        <div class="tab active" onclick="switchTab(event, 'overview')">Overview</div>
-                        <div class="tab" onclick="switchTab(event, 'specs')">Structural Matrix</div>
-                        <div class="tab" onclick="switchTab(event, 'units')">Occupancy</div>
-                    </div>
-
-                    <div id="overview" class="tab-content active">
-                        <p>This regional facility operates as an optimized asset node within our residential distribution architecture. Fully standardized with precision ambient zoning infrastructure, geometric environmental frameworks, and continuous diagnostic tracking.</p>
-                        <p>Managed strictly under T.E.A.R. Systems corporate engineering protocols to preserve spatial consistency and minimize occupant alignment variances across all sectors.</p>
-                    </div>
-
-                    <div id="specs" class="tab-content">
-                        <div class="spec-list">
-                            <div class="spec-item"><label>Structural Class</label><span id="dyn-spec-node">Grade-A Steel Frame</span></div>
-                            <div class="spec-item"><label>Resonant Alignment</label><span id="dyn-spec-hz">20.0 Hz</span></div>
-                            <div class="spec-item"><label>Grid Topology</label><span>Redundant Balanced Loop</span></div>
-                            <div class="spec-item"><label>Variance Threshold</label><span>0.00% Tolerable</span></div>
-                        </div>
-                    </div>
-
-                    <div id="units" class="tab-content">
-                        <p style="color: var(--text-main); font-weight: 600;">Current Structural Load: <span style="color: #10b981;">99.82%</span></p>
-                        <p>All residential sectors and modular commercial spaces within this node are operating at maximum balanced capacity. To request a baseline assessment file, forward credentials to central routing.</p>
-                    </div>
+                <div class="review-card">
+                    <div class="review-header"><span>Rebecca B.</span><span>2026-05-14</span></div>
+                    <div class="stars">★★★★★</div>
+                    <p style="margin: 0; font-style: italic;">"By far the best rental agency I have been with. They are always respectful and always available when needed. Any maintenance that has needed to be done gets handled immediately."</p>
                 </div>
-
-                <div>
-                    <img id="dyn-img" src="" alt="Building Overview" style="width:100%; height:320px; object-fit:cover; border-radius:var(--radius); border: 1px solid #e2e8f0; filter: grayscale(10%);">
+                <div class="review-card">
+                    <div class="review-header"><span>Shaun W.</span><span>2026-06-02</span></div>
+                    <div class="stars">★★★★★</div>
+                    <p style="margin: 0; font-style: italic;">"Working with the team here has been a great experience so far. They address questions promptly and go the extra mile to follow up on items."</p>
                 </div>
             </div>
         </div>
+
+        <!-- PORTFOLIO SECTION -->
+        <div id="portfolio" class="section">
+            <h3>Available Rental Properties</h3>
+            <p>Explore our current portfolio of pristine architectural spaces. All locations feature strict linear layouts, high geometric precision finishes, and complete acoustic insulation configurations.</p>
+            
+            <div class="grid">
+                <!-- Property 1 -->
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Rental Unit 1">
+                    <div class="card-content">
+                        <div class="price">$1,450 / mo</div>
+                        <h4 class="card-title">Suite 4-237 Edison Avenue</h4>
+                        <p class="card-desc">MODERN! 1-Bedroom premium apartment featuring pristine, sharp lines and unobstructed dramatic angles. Water included. Available immediately.</p>
+                    </div>
+                </div>
+                <!-- Property 2 -->
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Rental Unit 2">
+                    <div class="card-content">
+                        <div class="price">$2,600 / mo</div>
+                        <h4 class="card-title">91 Morier Avenue</h4>
+                        <p class="card-desc">Stunning 3-Bedroom Duplex. Completely sharp layouts, minimalist geometric layout structures, and raw, immaculate finishes throughout the living spaces.</p>
+                    </div>
+                </div>
+                <!-- Property 3 -->
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Rental Unit 3">
+                    <div class="card-content">
+                        <div class="price">$1,100 / mo</div>
+                        <h4 class="card-title">501-411 Cumberland Avenue</h4>
+                        <p class="card-desc">1-Bedroom Central Condo Unit. Clean, pristine glass boundaries, perfectly right-angled interior floorplan, and close proximity to downtown facilities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TWO COLUMN LAYOUT FOR CAREERS & CONTACT -->
+        <div class="two-column">
+            
+            <!-- CAREERS -->
+            <div id="careers" class="section">
+                <h3>Careers</h3>
+                <p>Join a professional property management team dedicated to long-term continuity, high building standards, and exceptional structural oversight.</p>
+                <div class="job-list">
+                    <div class="job-item">
+                        <div><strong>Property Administrator</strong><br><small>Winnipeg, MB • Full-Time</small></div>
+                        <a href="#" class="btn-secondary" onclick="alert('Applications for this staffing cycle are currently closed.'); return false;">Apply Now</a>
+                    </div>
+                    <div class="job-item">
+                        <div><strong>Junior Maintenance Inspector</strong><br><small>Winnipeg, MB • Full-Time</small></div>
+                        <a href="#" class="btn-secondary" onclick="alert('Applications for this staffing cycle are currently closed.'); return false;">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTACT / INTAKE FORM -->
+            <div id="contact" class="section">
+                <h3>Contact Our Team</h3>
+                <p>Have questions about our listed properties or property management services? Fill out the inquiry form below to speak to an agent.</p>
+                
+                <form onsubmit="alert('Thank you for your message. Your inquiry has been routed to our central coordination queue.'); this.reset(); return false;">
+                    <div class="form-group">
+                        <label>First Name*</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name*</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address*</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>What are you?*</label>
+                        <select required>
+                            <option value="">-- Select Option --</option>
+                            <option value="owner">I am an investment owner</option>
+                            <option value="renter">I am a prospective renter</option>
+                            <option value="contractor">I am a third-party contractor</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Questions or Services Interested In</label>
+                        <textarea rows="3" placeholder="Please describe your property requirements..."></textarea>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="c1" required>
+                        <label for="c1">I agree to receive communications from T.E.A.R. Systems Inc. regarding tenancy notices or community updates.</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="c2">
+                        <label for="c2">By providing your phone number, you agree to receive SMS alerts for emergency repair coordination. Reply STOP to opt-out.</label>
+                    </div>
+
+                    <button type="submit" class="btn" style="margin-top: 10px;">Submit Message</button>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- PORTAL SECTION -->
+        <div id="portal" class="section">
+            <h3>Resident Portal Login</h3>
+            <p style="text-align: center; color: #737373; font-size: 14px; margin-bottom: 25px;">Authorized administrative gateway for current community residents and staff accounts.</p>
+            <form style="max-width: 350px; margin: 0 auto;" onsubmit="alert('Error 403: Security authentication match failed. Connection rejected by internal T.E.A.R. server frames.'); return false;">
+                <div class="form-group">
+                    <label>Account / Unit ID</label>
+                    <input type="text" placeholder="e.g., WPG-9901" required>
+                </div>
+                <div class="form-group">
+                    <label>Secure Keyphrase</label>
+                    <input type="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn">Secure Authorization Intake</button>
+            </form>
+        </div>
+
     </div>
 
     <footer>
         <div class="footer-content">
             <div class="footer-section">
                 <h4>T.E.A.R. Systems Inc.</h4>
-                <p>Establishing baseline foundational stability and facility tracking grids since 1954.</p>
+                <p>Providing exceptional foundational stability and complete residential oversight since 1954.</p>
             </div>
             <div class="footer-section">
-                <h4>System Schedule</h4>
-                <p>Cycles 1 - 5: 0800 - 1700</p>
+                <h4>Office Hours</h4>
+                <p>Monday – Friday: 8:00 AM – 5:00 PM<br>Saturday – Sunday: Closed</p>
             </div>
             <div class="footer-section">
-                <h4>Regulatory Data</h4>
-                <p style="line-height: 2;"><a href="#" style="color:#475569; text-decoration:none;" onclick="alert('Protocol Notice: Legal parameters are held in central registry loops. Document index not cached on public terminals.')">Data Retention Policy</a><br><a href="#" style="color:#475569; text-decoration:none;" onclick="alert('Protocol Notice: System framework terms are monitored continuously.')">Asset Matrix Guidelines</a></p>
+                <h4>Quick Links</h4>
+                <p style="line-height: 2;">
+                    <a href="#" style="color:#a3a3a3; text-decoration:none;">Privacy Policy</a><br>
+                    <a href="#" style="color:#a3a3a3; text-decoration:none;">Terms of Service</a><br>
+                    <a href="mailto:tear.management54@gmail.com" style="color:#a3a3a3; text-decoration:none;">info@tearsystems.com</a>
+                </p>
             </div>
         </div>
         <div class="footer-bottom">
-            &copy; 2026 T.E.A.R. SYSTEMS INC. // DOCUMENT CONTROL SEGMENT: ID-998-A // CONTINUITY MANDATED.
+            &copy; 2026 T.E.A.R. Systems Inc. Property Management Group. All rights reserved. Registered Corporate Continuity Grid.
         </div>
     </footer>
 
-    <!-- INTERACTIVE VIEW HANDLING ROUTINES -->
-    <script>
-        function openBuilding(title, subtitle, imgSrc, nodeTag, hzTag) {
-            document.getElementById('main-view').classList.add('hidden');
-            document.getElementById('property-view').classList.remove('hidden');
-            
-            document.getElementById('dyn-title').innerText = title;
-            document.getElementById('dyn-subtitle').innerText = subtitle + " // " + nodeTag;
-            document.getElementById('dyn-img').src = imgSrc;
-            
-            // Map the subtle card telemetry into the structural specs tab dynamically
-            document.getElementById('dyn-spec-node').innerText = nodeTag;
-            document.getElementById('dyn-spec-hz').innerText = hzTag;
-            
-            window.scrollTo(0, 0);
-        }
-
-        function showDashboard() {
-            document.getElementById('property-view').classList.add('hidden');
-            document.getElementById('main-view').classList.remove('hidden');
-        }
-
-        function switchTab(event, tabId) {
-            const tabs = event.target.parentElement.querySelectorAll('.tab');
-            tabs.forEach(tab => tab.classList.remove('active'));
-            
-            const contents = event.target.closest('.section').querySelectorAll('.tab-content');
-            contents.forEach(content => content.classList.remove('active'));
-            
-            event.target.classList.add('active');
-            document.getElementById(tabId).classList.add('active');
-        }
-
-        // ARG Hook: Specialized error message delivery systems instead of generic prompts
-        function triggerSystemHold(errCode) {
-            alert(`Administrative Protocol Exception (${errCode}): All direct terminal intakes are suspended during active recalibration. Contact asset logging.`);
-        }
-
-        function triggerPortalRejection() {
-            const nodeInput = document.getElementById('portal-unit').value;
-            alert(`CRITICAL INTERACTION MISMATCH\n---------------------------\nTerminal Entry Refused.\nSignature Link: ${nodeInput}\nNetwork routing restricted to verified internal T.E.A.R. processing frames.\nIncident hash has been mapped.`);
-        }
-    </script>
 </body>
 </html>
