@@ -1,397 +1,436 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Index of /public/assets/archive</title>
-    <style>
-        /* --- GLOBAL & RESET STYLES --- */
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff;
-            color: #000000;
-            font-family: monospace;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<title>Index of /public/assets/archive</title>
+<style>
+/* --- GLOBAL & RESET STYLES --- */
+html, body {
+height: 100%;
+margin: 0;
+padding: 0;
+background-color: #ffffff;
+color: #000000;
+font-family: monospace;
+box-sizing: border-box;
+}
 
-        /* --- STATE: MASSIVE APACHE DIRECTORY --- */
-        #directory-portal {
-            padding: 20px;
-            display: block;
-        }
-        #directory-portal h1 {
-            font-size: 1.5em;
-            margin-bottom: 5px;
-        }
-        #directory-portal hr {
-            border: 0;
-            border-top: 1px solid #000000;
-            margin: 10px 0;
-        }
-        #directory-portal pre {
-            font-size: 13px;
-            line-height: 1.6;
-        }
-        #directory-portal a {
-            color: #0000ee;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        #directory-portal a:hover {
-            text-decoration: underline;
-        }
-        
-        /* Dead/Offline Link Styling */
-        .dead-link {
-            color: #555555;
-            text-decoration: none;
-            cursor: default;
-        }
-        
-        /* Inline Directory Redactions */
-        .dir-redacted {
-            background-color: #000000;
-            color: #000000;
-            user-select: none;
-            padding: 0 2px;
-        }
+/* --- STATE: MASSIVE APACHE DIRECTORY --- */
+#directory-portal {
+padding: 20px;
+display: block;
+}
+#directory-portal h1 {
+font-size: 1.5em;
+margin-bottom: 5px;
+}
+#directory-portal hr {
+border: 0;
+border-top: 1px solid #000000;
+margin: 10px 0;
+}
+#directory-portal pre {
+font-size: 13px;
+line-height: 1.6;
+}
+#directory-portal a {
+color: #0000ee;
+text-decoration: none;
+cursor: pointer;
+}
+#directory-portal a:hover {
+text-decoration: underline;
+}
 
-        #directory-portal address {
-            font-size: 0.9em;
-            font-style: italic;
-            color: #555555;
-            margin-top: 15px;
-        }
+/* Dead/Offline Link Styling */
+.dead-link {
+color: #555555;
+text-decoration: none;
+cursor: default;
+}
 
-        /* --- DUMMY FILE TEXT VIEWER --- */
-        #file-content-viewer {
-            display: none;
-            padding: 30px;
-            background-color: #fafafa;
-            border: 1px solid #ccc;
-            margin: 20px;
-        }
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: #0000ee;
-            cursor: pointer;
-            text-decoration: underline;
-        }
+/* Inline Directory Redactions */
+.dir-redacted {
+background-color: #000000;
+color: #000000;
+user-select: none;
+padding: 0 2px;
+}
 
-        /* --- STATE: HORROR TERMINAL --- */
-        #terminal-view {
-            display: none; 
-            background-color: #0d0e0d;
-            height: 100%;
-            width: 100%;
-            padding: 40px;
-            box-sizing: border-box;
-            flex-direction: column;
-            position: absolute;
-            top: 0; left: 0;
-            z-index: 20;
-        }
-        .scanline {
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            background-size: 100% 4px, 6px 100%;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 30;
-            pointer-events: none;
-        }
-        .wrapper {
-            max-width: 800px;
-            margin: 0 auto;
-            border: 2px solid #39ff14;
-            padding: 30px;
-            background-color: #050605;
-            box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
-            flex-grow: 1;
-        }
-        .header-block {
-            border-bottom: 2px double #39ff14;
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-            font-size: 12px;
-            text-transform: uppercase;
-            color: #39ff14;
-        }
-        .warning-banner {
-            border: 1px dashed #39ff14;
-            padding: 10px;
-            text-align: center;
-            margin-bottom: 25px;
-            font-weight: bold;
-            color: #39ff14;
-        }
-        .entry {
-            font-size: 14px;
-            line-height: 1.6;
-            white-space: pre-wrap;
-            color: #39ff14;
-        }
-        .redacted {
-            background-color: #000;
-            color: #000; 
-            border: 1px solid #1a1a1a;
-            padding: 0 3px;
-        }
-        .redacted::selection { background-color: #39ff14; color: #000; }
-        .redacted::-moz-selection { background-color: #39ff14; color: #000; }
+#directory-portal address {
+font-size: 0.9em;
+font-style: italic;
+color: #555555;
+margin-top: 15px;
+}
 
-        .terminal-prompt {
-            margin-top: 40px;
-            border-top: 1px solid #39ff14;
-            padding-top: 15px;
-            font-size: 12px;
-            color: #21961b;
-            display: flex;
-            justify-content: space-between;
-        }
-        .terminal-exit-btn {
-            color: #39ff14;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-        .hidden-whisper {
-            text-align: center;
-            color: #151815;
-            font-size: 11px;
-            margin-top: 60px;
-            letter-spacing: 2px;
-            user-select: none;
-        }
+/* --- DUMMY FILE TEXT VIEWER --- */
+#file-content-viewer {
+display: none;
+padding: 30px;
+background-color: #fafafa;
+border: 1px solid #ccc;
+margin: 20px;
+}
+.back-btn {
+display: inline-block;
+margin-bottom: 20px;
+color: #0000ee;
+cursor: pointer;
+text-decoration: underline;
+}
 
-        /* --- INTERMEDIARY BOOT SCREEN --- */
-        #boot-screen {
-            display: none;
-            background-color: #000000;
-            color: #39ff14;
-            font-family: monospace;
-            padding: 40px;
-            height: 100%;
-            box-sizing: border-box;
-            position: absolute;
-            top: 0; left: 0; width: 100%;
-            z-index: 25;
-        }
-    </style>
+/* --- STATE: HORROR TERMINAL --- */
+#terminal-view {
+display: none;
+background-color: #0d0e0d;
+height: 100%;
+width: 100%;
+padding: 40px;
+box-sizing: border-box;
+flex-direction: column;
+position: absolute;
+top: 0; left: 0;
+z-index: 20;
+}
+.scanline {
+background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+background-size: 100% 4px, 6px 100%;
+position: fixed;
+top: 0; left: 0; width: 100%; height: 100%;
+z-index: 30;
+pointer-events: none;
+}
+.wrapper {
+max-width: 800px;
+margin: 0 auto;
+border: 2px solid #39ff14;
+padding: 30px;
+background-color: #050605;
+box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
+flex-grow: 1;
+}
+.header-block {
+border-bottom: 2px double #39ff14;
+padding-bottom: 15px;
+margin-bottom: 25px;
+font-size: 12px;
+text-transform: uppercase;
+color: #39ff14;
+}
+.warning-banner {
+border: 1px dashed #39ff14;
+padding: 10px;
+text-align: center;
+margin-bottom: 25px;
+font-weight: bold;
+color: #39ff14;
+}
+.entry {
+font-size: 14px;
+line-height: 1.6;
+white-space: pre-wrap;
+color: #39ff14;
+}
+.redacted {
+background-color: #000;
+color: #000;
+border: 1px solid #1a1a1a;
+padding: 0 3px;
+}
+.redacted::selection { background-color: #39ff14; color: #000; }
+.redacted::-moz-selection { background-color: #39ff14; color: #000; }
+
+.terminal-prompt {
+margin-top: 40px;
+border-top: 1px solid #39ff14;
+padding-top: 15px;
+font-size: 12px;
+color: #21961b;
+display: flex;
+justify-content: space-between;
+}
+.terminal-exit-btn {
+color: #39ff14;
+text-decoration: underline;
+cursor: pointer;
+}
+.hidden-whisper {
+text-align: center;
+color: #151815;
+font-size: 11px;
+margin-top: 60px;
+letter-spacing: 2px;
+user-select: none;
+}
+
+/* --- INTERMEDIARY BOOT SCREEN --- */
+#boot-screen {
+display: none;
+background-color: #000000;
+color: #39ff14;
+font-family: monospace;
+padding: 40px;
+height: 100%;
+box-sizing: border-box;
+position: absolute;
+top: 0; left: 0; width: 100%;
+z-index: 25;
+}
+</style>
 </head>
 <body>
 
 <div id="directory-portal">
-    <h1 id="dir-title">Index of /public/assets/archive</h1>
-    <hr>
-    
-    <pre id="root-dir">
-<a onclick="showViewer('parent')">../</a>
-<span class="dir-item">[DIR]</span> <span class="dead-link">grid_monitoring_2003_fallback/</span>        2003-08-15 01:22     -
-<span class="dir-item">[DIR]</span> <span class="dead-link">zoning_blueprints_toronto_east/</span>       2014-05-19 09:44     -
-<span class="dir-item">[DIR]</span> <span class="dir-redacted">███████████████████████████████/</span>      1985-10-31 00:00     -
-<span class="file-item">[TXT]</span> <a onclick="showViewer('hvac')">hvac_maintenance_zone3.log</a>            2025-01-05 09:11    42KB
-<span class="file-item">[PDF]</span> <a onclick="showViewer('osha')">osha_compliance_checklist.pdf</a>         2025-08-22 10:30   212KB
-<span class="file-item">[CSV]</span> <a onclick="showViewer('invoice')">procurement_invoice_7711.csv</a>          2026-03-19 16:45    15KB
-<span class="file-item">[PDF]</span> <a onclick="showViewer('permit')">toronto_facility_elevator_permit.pdf</a>  2024-11-12 14:22   1.2MB
-<span class="file-item">[TXT]</span> <span class="dead-link">concrete_mix_slurry_specs_v2.txt</span>      2023-04-11 11:02    18KB
-<span class="file-item">[CSV]</span> <a onclick="showViewer('freight')">regional_freight_manifest_midwest.csv</a> 2026-02-10 13:14   188KB
-<span class="file-item">[SYS]</span> <span class="dead-link">grid_load_balance_anchor_09.sys</span>       2026-05-01 03:40   412KB
-<span class="file-item">[TXT]</span> <span class="dead-link">property_mgmt_onboarding_template.txt</span> 2025-10-20 16:25    24KB
-<span class="dir-item">[DIR]</span> <a onclick="enterFolder('legacy')">restructuring_legacy_1986/</a>             1998-04-03 11:12     -
-<span class="file-item">[PDF]</span> <span class="dir-redacted">██████████████████████████████.pdf</span>    2004-09-26 12:00   8.4MB
-<span class="file-item">[TXT]</span> <span class="dead-link">substation_b_regression_event.log</span>     2026-04-12 04:12     8KB
-<span class="file-item">[CONF]</span><span class="dead-link">network_scrub_firmware_manifest.conf</span> 2024-07-02 08:15    12KB
-<span class="file-item">[TXT]</span> <span class="dead-link">tenant_noise_complaint_log_1204.txt</span>   2025-12-01 22:18     4KB
-<span class="file-item">[CSV]</span> <span class="dead-link">bulk_agricultural_feedstone_Q1.csv</span>   2026-01-15 10:05    95KB
-<span class="file-item">[PDF]</span> <span class="dead-link">structural_load_optical_anomaly.pdf</span>   2024-03-14 15:30   3.1MB
-<span class="file-item">[TXT]</span> <span class="dead-link">deadbolt_hardware_distribution.txt</span>    2025-06-18 09:12    14KB
-<span class="file-item">[TXT]</span> <span class="dead-link">hardware.log</span>    2025-06-19 04:26    16KB
-<span class="file-item">[TXT]</span> <span class="dead-link">locations.csv</span>    2017-03-24 05:53    32KB
-    </pre>
+<h1 id="dir-title">Index of /public/assets/archive</h1>
+<hr>
 
-    <pre id="legacy-dir" style="display: none;">
+<pre id="root-dir">
+<a onclick="showViewer('parent')">../</a>
+<span class="dir-item">[DIR]</span> <span class="dead-link">grid_monitoring_2003_fallback/</span> 2003-08-15 01:22 -
+<span class="dir-item">[DIR]</span> <span class="dead-link">zoning_blueprints_toronto_east/</span> 2014-05-19 09:44 -
+<span class="dir-item">[DIR]</span> <span class="dir-redacted">███████████████████████████████/</span> 1985-10-31 00:00 -
+<span class="file-item">[TXT]</span> <a onclick="showViewer('hvac')">hvac_maintenance_zone3.log</a> 2025-01-05 09:11 42KB
+<span class="file-item">[PDF]</span> <a onclick="showViewer('osha')">osha_compliance_checklist.pdf</a> 2025-08-22 10:30 212KB
+<span class="file-item">[CSV]</span> <a onclick="showViewer('invoice')">procurement_invoice_7711.csv</a> 2026-03-19 16:45 15KB
+<span class="file-item">[PDF]</span> <a onclick="showViewer('permit')">toronto_facility_elevator_permit.pdf</a> 2024-11-12 14:22 1.2MB
+<span class="file-item">[TXT]</span> <span class="dead-link">concrete_mix_slurry_specs_v2.txt</span> 2023-04-11 11:02 18KB
+<span class="file-item">[TXT]</span> <span class="dead-link">corporate_travel_expense_policy.txt</span> 2021-06-14 09:30 28KB
+<span class="file-item">[CSV]</span> <span class="dead-link">q2_cafeteria_vending_receipts.csv</span> 2024-07-02 16:40 11KB
+<span class="file-item">[TXT]</span> <span class="dead-link">parking_garage_lighting_retro.txt</span> 2022-11-30 10:15 14KB
+<span class="file-item">[PDF]</span> <span class="dead-link">wastewater_ph_monitoring_sheet.pdf</span> 2025-03-12 08:22 1.4MB
+<span class="file-item">[PDF]</span> <span class="dead-link">fire_extinguisher_inspection_all.pdf</span> 2025-09-01 11:55 3.1MB
+<span class="file-item">[CSV]</span> <span class="dead-link">fleet_vehicle_mileage_log_2024.csv</span> 2024-12-31 23:58 840KB
+<span class="file-item">[TXT]</span> <span class="dead-link">janitorial_supply_order_sept.txt</span> 2025-09-18 14:20 6KB
+<span class="file-item">[CFG]</span> <span class="dead-link">server_rack_delta_cooling_fans.cfg</span> 2026-02-14 03:11 2KB
+<span class="file-item">[BAK]</span> <span class="dead-link">backup_user_registry_corrupted.bak</span> 2023-08-14 22:00 44.1MB
+<span class="file-item">[PDF]</span> <span class="dead-link">municipal_drainage_assessment.pdf</span> 2020-05-22 13:45 4.8MB
+<span class="file-item">[BIN]</span> <span class="dead-link">lobby_turnstile_firmware_v3.bin</span> 2024-10-11 09:04 204KB
+<span class="file-item">[PDF]</span> <span class="dead-link">asbestos_clearance_cert_zone2.pdf</span> 2019-11-04 11:12 1.1MB
+<span class="file-item">[DOC]</span> <span class="dead-link">shredder_maintenance_contract.docx</span> 2022-01-15 10:30 45KB
+<span class="file-item">[TXT]</span> <span class="dead-link">employee_picnic_rsvp_list_2023.txt</span> 2023-07-10 12:14 12KB
+<span class="file-item">[CSV]</span> <span class="dead-link">office_chair_ergonomic_requests.csv</span> 2025-04-19 15:33 19KB
+<span class="file-item">[LOG]</span> <span class="dead-link">boiler_room_pressure_test_2022.log</span> 2022-03-08 06:12 88KB
+<span class="file-item">[LOG]</span> <span class="dead-link">backup_dhcp_lease_renewals.log</span> 2026-05-20 04:00 114KB
+<span class="file-item">[TXT]</span> <span class="dead-link">telecom_closet_b_patch_panel.txt</span> 2021-08-24 13:11 8KB
+<span class="file-item">[PDF]</span> <span class="dead-link">trash_compactor_safety_audit.pdf</span> 2024-06-12 10:45 620KB
+<span class="file-item">[SYS]</span> <span class="dead-link">keycard_reprogramming_batch4.sys</span> 2025-11-29 17:02 32KB
+<span class="file-item">[PDF]</span> <span class="dead-link">roof_leak_patch_invoice_approved.pdf</span> 2023-02-18 14:10 105KB
+<span class="file-item">[PDF]</span> <span class="dead-link">meeting_room_c_display_manual.pdf</span> 2018-10-05 09:22 2.7MB
+<span class="file-item">[CSV]</span> <a onclick="showViewer('freight')">regional_freight_manifest_midwest.csv</a> 2026-02-10 13:14 188KB
+<span class="file-item">[SYS]</span> <span class="dead-link">grid_load_balance_anchor_09.sys</span> 2026-05-01 03:40 412KB
+<span class="file-item">[TXT]</span> <span class="dead-link">property_mgmt_onboarding_template.txt</span> 2025-10-20 16:25 24KB
+<span class="dir-item">[DIR]</span> <a onclick="enterFolder('legacy')">restructuring_legacy_1986/</a> 1998-04-03 11:12 -
+<span class="file-item">[PDF]</span> <span class="dir-redacted">██████████████████████████████.pdf</span> 2004-09-26 12:00 8.4MB
+<span class="file-item">[TXT]</span> <span class="dead-link">substation_b_regression_event.log</span> 2026-04-12 04:12 8KB
+<span class="file-item">[CONF]</span><span class="dead-link">network_scrub_firmware_manifest.conf</span> 2024-07-02 08:15 12KB
+<span class="file-item">[TXT]</span> <span class="dead-link">tenant_noise_complaint_log_1204.txt</span> 2025-12-01 22:18 4KB
+<span class="file-item">[CSV]</span> <span class="dead-link">bulk_agricultural_feedstone_Q1.csv</span> 2026-01-15 10:05 95KB
+<span class="file-item">[PDF]</span> <span class="dead-link">structural_load_optical_anomaly.pdf</span> 2024-03-14 15:30 3.1MB
+<span class="file-item">[TXT]</span> <span class="dead-link">deadbolt_hardware_distribution.txt</span> 2025-06-18 09:12 14KB
+<span class="file-item">[TXT]</span> <span class="dead-link">loading_dock_graffiti_report.txt</span> 2025-07-21 07:44 3KB
+<span class="file-item">[CSV]</span> <span class="dead-link">office_supply_toner_inventory.csv</span> 2026-01-10 11:20 18KB
+<span class="file-item">[PDF]</span> <span class="dead-link">water_fountain_filter_schedule.pdf</span> 2024-08-14 13:12 340KB
+<span class="file-item">[TXT]</span> <span class="dead-link">stairwell_b_emergency_light_bat.txt</span> 2025-11-04 10:05 5KB
+<span class="file-item">[TXT]</span> <span class="dead-link">window_washing_safety_tether_log.txt</span> 2025-05-12 16:30 22KB
+<span class="file-item">[CSV]</span> <span class="dead-link">uniform_shirt_size_matrix_2024.csv</span> 2024-02-15 09:14 15KB
+<span class="file-item">[PDF]</span> <span class="dead-link">lobby_holiday_decoration_rules.pdf</span> 2023-11-20 14:00 1.1MB
+<span class="file-item">[TXT]</span> <span class="dead-link">basement_sump_pump_test_weekly.txt</span> 2026-05-18 08:00 12KB
+<span class="file-item">[DOC]</span> <span class="dead-link">interoffice_mail_routing_guide.docx</span> 2021-03-04 10:15 55KB
+<span class="file-item">[TXT]</span> <span class="dead-link">breakroom_refrigerator_rules.txt</span> 2025-01-10 09:00 2KB
+<span class="file-item">[CSV]</span> <span class="dead-link">visitor_badge_logs_q4_anonymous.csv</span> 2025-12-31 18:00 1.8MB
+<span class="file-item">[TXT]</span> <span class="dead-link">server_room_humidity_sensor_cal.txt</span> 2026-03-02 11:42 7KB
+<span class="file-item">[PDF]</span> <span class="dead-link">parking_permit_renewal_notice_v2.pdf</span> 2025-10-01 08:30 410KB
+<span class="file-item">[TXT]</span> <span class="dead-link">hvac_chiller_fluid_disposal_log.txt</span> 2024-09-22 14:15 16KB
+<span class="file-item">[CSV]</span> <span class="dead-link">pest_control_trap_locations_map.csv</span> 2025-08-11 10:00 29KB
+<span class="file-item">[TXT]</span> <span class="dead-link">lobby_background_music_playlist.txt</span> 2023-04-05 13:12 4KB
+<span class="file-item">[PDF]</span> <span class="dead-link">fire_drill_evacuation_times_2025.pdf</span> 2025-10-15 10:30 820KB
+<span class="file-item">[TXT]</span> <span class="dead-link">reception_desk_phone_speed_dial.txt</span> 2026-01-22 09:15 3KB
+<span class="file-item">[TXT]</span> <span class="dir-redacted">██████████████████████████████.txt</span> 1986-09-11 03:14 1KB
+</pre>
+
+<pre id="legacy-dir" style="display: none;">
 <a onclick="enterFolder('root')">../</a>
-<span class="file-item">[LOG]</span> <a onclick="triggerTerminalBoot()">B6-SHI-TEXT.log</a>                       1986-11-12 23:04     4KB
-<span class="file-item">[SYS]</span> <span class="dead-link">SHI_core_liquidation_balance.sys</span>     1986-11-01 09:00   720KB
-<span class="file-item">[TXT]</span> <span class="dir-redacted">██████████████████████████████.txt</span>    1985-04-12 14:10    32KB
-<span class="file-item">[TXT]</span> <span class="dead-link">executive_board_transition_memo.txt</span>   1986-11-05 10:15    16KB
-    </pre>
-    
-    <hr>
-    <address>Apache/2.4.41 (Ubuntu) Server at portal.tearsystems.com Port 80</address>
+<span class="file-item">[LOG]</span> <a onclick="triggerTerminalBoot()">B6-SHI-TEXT.log</a> 1986-11-12 23:04 4KB
+<span class="file-item">[SYS]</span> <span class="dead-link">SHI_core_liquidation_balance.sys</span> 1986-11-01 09:00 720KB
+<span class="file-item">[TXT]</span> <span class="dir-redacted">██████████████████████████████.txt</span> 1985-04-12 14:10 32KB
+<span class="file-item">[TXT]</span> <span class="dead-link">executive_board_transition_memo.txt</span> 1986-11-05 10:15 16KB
+</pre>
+
+<hr>
+<address>Apache/2.4.41 (Ubuntu) Server at portal.tearsystems.com Port 80</address>
 </div>
 
 <div id="file-content-viewer">
-    <div class="back-btn" onclick="closeViewer()">🧾 Return to Directory Listing</div>
-    <pre id="file-raw-text"></pre>
+<div class="back-btn" onclick="closeViewer()">🧾 Return to Directory Listing</div>
+<pre id="file-raw-text"></pre>
 </div>
 
 <div id="boot-screen">
-    <pre>
+<pre>
 CONNECT 10.244.81.4 // PORTAL PROTOCOL SECURE RECOVERY...
 LOADING DEPRECATED FILESYSTEM MODULES [OK]
 MOUNTING COLD CORE VOLUME ST1986...
 DECRYPTING FILE DESCRIPTOR: 86-SHI-TEXT...
 STABILIZING GEOMETRIC MATRIX TRANSLATION...
 READY.
-    </pre>
+</pre>
 </div>
 
 <div id="terminal-view">
-    <div class="scanline"></div>
+<div class="scanline"></div>
 
-    <div class="wrapper">
-        <div class="header-block">
-            ============================================================<br>
-            REGISTRY FILE DESCRIPTOR // ID: 86-SHI-TEXT<br>
-            SYSTEM LOG TIME-STAMP: 11-12-1986 // STATUS: UNLOCKED<br>
-            ============================================================
-        </div>
+<div class="wrapper">
+<div class="header-block">
+============================================================<br>
+REGISTRY FILE DESCRIPTOR // ID: 86-SHI-TEXT<br>
+SYSTEM LOG TIME-STAMP: 11-12-1986 // STATUS: UNLOCKED<br>
+============================================================
+</div>
 
-        <div class="warning-banner">
-            * UNCOMMITTED RESTRUCTURING RECORD -- TRANSCRIPTS ONLY *
-        </div>
+<div class="warning-banner">
+*** UNCOMMITTED RESTRUCTURING RECORD -- TRANSCRIPTS ONLY ***
+</div>
 
-        <div class="entry">
+<div class="entry">
 [LOG ENTRY BEGINS]
 
 DOCUMENT RE: LIQUIDATION & TRANSITION
 
-NOTICE IS HEREBY GIVEN THAT EFFECTIVE OCTOBER 31, 1986, STERLING HEAVY INDUSTRIES HAS CONCLUDED THE INDEPENDENT LIQUIDATION OF ALL <span class="redacted">PREVIOUS INDUSTRIAL MANUFACTURING MANUFACTURING MACHINERY AND EQUIPMENT SECTORS.</span> 
+NOTICE IS HEREBY GIVEN THAT EFFECTIVE OCTOBER 31, 1986, STERLING HEAVY INDUSTRIES HAS CONCLUDED THE INDEPENDENT LIQUIDATION OF ALL <span class="redacted">PREVIOUS INDUSTRIAL MANUFACTURING MANUFACTURING MACHINERY AND EQUIPMENT SECTORS.</span>
 
-PURSUANT TO THE PRIVATE ACQUISITION CLAUSE DIRECTED BY <span class="redacted">NEW CORPORATE MANAGEMENT, 100% OF REMAINING PHYSICAL ASSETS, PROPERTY HOLDINGS, AND REGIONAL PIPELINES</span> HAVE BEEN TRANSFERRED DIRECTLY TO THE NEWLY FORMED ENTITY: 
+PURSUANT TO THE PRIVATE ACQUISITION CLAUSE DIRECTED BY <span class="redacted">NEW CORPORATE MANAGEMENT, 100% OF REMAINING PHYSICAL ASSETS, PROPERTY HOLDINGS, AND REGIONAL PIPELINES</span> HAVE BEEN TRANSFERRED DIRECTLY TO THE NEWLY FORMED ENTITY:
 
-T.E.A.R. SYSTEMS INC. 
+T.E.A.R. SYSTEMS INC.
 (TETHERIN ENGINEERING & ARCHITECTURAL RESEARCH)
 
 ALL CENTRAL <span class="redacted">MANUFACTURING OPERATIONS AND HEAVY PLANT</span> DEPARTMENTS ARE CEASING PRODUCTION. REPURPOSING OF REGIONAL ARCHITECTURAL BOUNDARIES AND <span class="redacted">GEOMETRIC GRIDS</span> IS SCHEDULED TO BEGIN IMMEDIATELY UNDER THE NEW EXECUTIVE BOARD. ALL PRIOR DEPT RECORDS SEALED PER INTERNAL PROTOCOL.
 
 [END OF TRANSCRIPT]
-        </div>
+</div>
 
-        <div class="terminal-prompt">
-            <span>Awaiting input... _</span>
-            <span class="terminal-exit-btn" onclick="exitTerminal()">[ DISCONNECT / EXIT ]</span>
-        </div>
-    </div>
+<div class="terminal-prompt">
+<span>Awaiting input... _</span>
+<span class="terminal-exit-btn" onclick="exitTerminal()">[ DISCONNECT / EXIT ]</span>
+</div>
+</div>
 
-    <div class="hidden-whisper">
-        the second echo forgets the original sound
-    </div>
+<div class="hidden-whisper">
+the second echo forgets the original sound
+</div>
 </div>
 
 <script>
-    // Handles Folder Navigation
-    function enterFolder(folderName) {
-        const title = document.getElementById('dir-title');
-        const rootDir = document.getElementById('root-dir');
-        const legacyDir = document.getElementById('legacy-dir');
+// Handles Folder Navigation
+function enterFolder(folderName) {
+const title = document.getElementById('dir-title');
+const rootDir = document.getElementById('root-dir');
+const legacyDir = document.getElementById('legacy-dir');
 
-        if (folderName === 'legacy') {
-            title.innerText = "Index of /public/assets/archive/restructuring_legacy_1986";
-            rootDir.style.display = 'none';
-            legacyDir.style.display = 'block';
-        } else {
-            title.innerText = "Index of /public/assets/archive";
-            rootDir.style.display = 'block';
-            legacyDir.style.display = 'none';
-        }
-    }
+if (folderName === 'legacy') {
+title.innerText = "Index of /public/assets/archive/restructuring_legacy_1986";
+rootDir.style.display = 'none';
+legacyDir.style.display = 'block';
+} else {
+title.innerText = "Index of /public/assets/archive";
+rootDir.style.display = 'block';
+legacyDir.style.display = 'none';
+}
+}
 
-    // Handles Dummy File Text Injection
-    function showViewer(fileType) {
-        document.getElementById('directory-portal').style.display = 'none';
-        const viewer = document.getElementById('file-content-viewer');
-        const textBox = document.getElementById('file-raw-text');
-        viewer.style.display = 'block';
+// Handles Dummy File Text Injection
+function showViewer(fileType) {
+document.getElementById('directory-portal').style.display = 'none';
+const viewer = document.getElementById('file-content-viewer');
+const textBox = document.getElementById('file-raw-text');
+viewer.style.display = 'block';
 
-        if (fileType === 'hvac') {
-            textBox.innerText = `[2025-01-01 08:00:00] HVAC SYSTEM LOG // ZONE 3 COMPRESSOR STATUS: NOMINAL
+if (fileType === 'hvac') {
+textBox.innerText = `[2025-01-01 08:00:00] HVAC SYSTEM LOG // ZONE 3 COMPRESSOR STATUS: NOMINAL
 [2025-01-01 12:00:00] Ambient air intake temperature recorded at 68.4 F.
 [2025-01-02 04:15:00] Automated filter pressure alert cleared by Night Shift Maintenance.
 [2025-01-03 09:30:00] Unit 402 reported unusual rattling noise. Defective damper motor replaced.
 [2025-01-05 09:11:00] Routine line pressure optimization sequence complete. Coolant at full capacity.`;
-        } else if (fileType === 'osha') {
-            textBox.innerText = `TEAR SYSTEMS INC. -- OCCUPATIONAL SAFETY AND HEALTH COMPLIANCE GENERAL CHECKLIST
+} else if (fileType === 'osha') {
+textBox.innerText = `TEAR SYSTEMS INC. -- OCCUPATIONAL SAFETY AND HEALTH COMPLIANCE GENERAL CHECKLIST
 Document ID: TEAR-OSHA-2025-REV4
 
 1. Emergency exit illumination paths must be kept free of custodial equipment.
 2. Electrical main breaker closets require a minimum of 36 inches clear working space.
 3. Proper mechanical lifting configurations must be practiced when lifting industrial floor buffer gear.
 4. Any unlisted structural variations found on basement levels are to be reported to management immediately. Do not attempt to resolve layout discrepancies with third-party contractor equipment.`;
-        } else if (fileType === 'invoice') {
-            textBox.innerText = `INVOICE #INV-7711-TEAR-CENTRAL
+} else if (fileType === 'invoice') {
+textBox.innerText = `INVOICE #INV-7711-TEAR-CENTRAL
 DATE: 2026-03-19 // TERMS: NET 30
 
 VENDOR: NORTHERN INDUSTRIAL SUPPLY
 SHIP TO: T.E.A.R. SYSTEMS LOGISTICS CENTER (TORONTO HUB)
 
-ITEM ID      DESCRIPTION                               QTY     UNIT PRICE    TOTAL
+ITEM ID DESCRIPTION QTY UNIT PRICE TOTAL
 ----------------------------------------------------------------------------------
-#DS-9902     Commercial Rubber Door Sweeps             500     $12.50        $6,250.00
-#FB-1104     Heavy-Duty Rotational Floor Buffers      12      $840.00       $10,080.00
-#LT-48X      Fluorescent Tube Fixtures (48-Inch)       40      $45.00        $1,800.00
+#DS-9902 Commercial Rubber Door Sweeps 500 $12.50 $6,250.00
+#FB-1104 Heavy-Duty Rotational Floor Buffers 12 $840.00 $10,080.00
+#LT-48X Fluorescent Tube Fixtures (48-Inch) 40 $45.00 $1,800.00
 
 STATUS: INVOICE PAID // TRANSACTION CLOSED.`;
-        } else if (fileType === 'permit') {
-            textBox.innerText = `CITY OF TORONTO -- BUILDING SAFETY DIVISION
+} else if (fileType === 'permit') {
+textBox.innerText = `CITY OF TORONTO -- BUILDING SAFETY DIVISION
 ELEVATOR OPERATIONAL SAFETY CERTIFICATE & PERMIT
 
 Location Code: TEAR-TOR-04921
 Authorized Service Max Load: 4,500 LBS
 Inspected Mechanics License: #7741-B
 
-This documentation confirms that the vertical transport apparatus installed at the primary multi-residential structural grid coordinates has passed baseline weight restrictions. Operational limit set for levels 1 through 12. 
+This documentation confirms that the vertical transport apparatus installed at the primary multi-residential structural grid coordinates has passed baseline weight restrictions. Operational limit set for levels 1 through 12.
 Notice: Level 13 access configuration restricted via corporate private structural variance. System architecture verified safe for ongoing transit operations.`;
-        } else if (fileType === 'freight') {
-            textBox.innerText = `CENTRAL FREIGHT DISPATCH MANIFEST // REGION CENTRAL-MIDWEST
+} else if (fileType === 'freight') {
+textBox.innerText = `CENTRAL FREIGHT DISPATCH MANIFEST // REGION CENTRAL-MIDWEST
 TRACKING STATUS: CLOSED // RE-ROUTED TO HEADQUARTERS HUB
 
-CARGO ID    TYPE            WEIGHT (OUTBOUND)   WEIGHT (TERMINAL INTAKE)   DISCREPANCY NOTES
+CARGO ID TYPE WEIGHT (OUTBOUND) WEIGHT (TERMINAL INTAKE) DISCREPANCY NOTES
 ------------------------------------------------------------------------------------------------
-#FR-9102    GRAIN BULK      180,000 LBS         0 LBS                      *SCALE ERROR VALUE UNRESOLVED
-#FR-9109    LIVESTOCK       220,000 LBS         0 LBS                      *MASS VARIANCE OUTSIDE BLUEPRINT
-#FR-9200    RAW INDUSTRIAL  140,000 LBS         140,000 LBS                NOMINAL BALANCE
+#FR-9102 GRAIN BULK 180,000 LBS 0 LBS *SCALE ERROR VALUE UNRESOLVED
+#FR-9109 LIVESTOCK 220,000 LBS 0 LBS *MASS VARIANCE OUTSIDE BLUEPRINT
+#FR-9200 RAW INDUSTRIAL 140,000 LBS 140,000 LBS NOMINAL BALANCE
 
 *System Note: Gravity metrics failed to sync at loading docks. Security override applied per order of Executive Board.*`;
-        } else {
-            textBox.innerText = `HTTP ERROR 403: ACCESS DENIED. 
+} else {
+textBox.innerText = `HTTP ERROR 403: ACCESS DENIED.
 You do not have administrative clearance to view parent directory levels.`;
-        }
-    }
+}
+}
 
-    function closeViewer() {
-        document.getElementById('file-content-viewer').style.display = 'none';
-        document.getElementById('directory-portal').style.display = 'block';
-    }
+function closeViewer() {
+document.getElementById('file-content-viewer').style.display = 'none';
+document.getElementById('directory-portal').style.display = 'block';
+}
 
-    // Triggers Green Terminal Sequence
-    function triggerTerminalBoot() {
-        document.getElementById('directory-portal').style.display = 'none';
-        document.body.style.backgroundColor = '#000000';
-        
-        const bootScreen = document.getElementById('boot-screen');
-        bootScreen.style.display = 'block';
+// Triggers Green Terminal Sequence
+function triggerTerminalBoot() {
+document.getElementById('directory-portal').style.display = 'none';
+document.body.style.backgroundColor = '#000000';
 
-        setTimeout(() => {
-            bootScreen.style.display = 'none';
-            const termView = document.getElementById('terminal-view');
-            termView.style.display = 'flex';
-            document.title = "RECOVERY_INDEX_1986_SEC3.LOG";
-        }, 1500);
-    }
+const bootScreen = document.getElementById('boot-screen');
+bootScreen.style.display = 'block';
 
-    // Returns Player from Terminal straight back to the Legacy Directory View
-    function exitTerminal() {
-        document.getElementById('terminal-view').style.display = 'none';
-        document.body.style.backgroundColor = '#ffffff';
-        document.title = "Index of /public/assets/archive";
-        
-        // Ensure they go straight back to the active legacy directory section
-        document.getElementById('directory-portal').style.display = 'block';
-        enterFolder('legacy');
-    }
+setTimeout(() => {
+bootScreen.style.display = 'none';
+const termView = document.getElementById('terminal-view');
+termView.style.display = 'flex';
+document.title = "RECOVERY_INDEX_1986_SEC3.LOG";
+}, 1500);
+}
+
+// Returns Player from Terminal straight back to the Legacy Directory View
+function exitTerminal() {
+document.getElementById('terminal-view').style.display = 'none';
+document.body.style.backgroundColor = '#ffffff';
+document.title = "Index of /public/assets/archive";
+
+// Ensure they go straight back to the active legacy directory section
+document.getElementById('directory-portal').style.display = 'block';
+enterFolder('legacy');
+}
 </script>
 
 </body>
