@@ -1,190 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Index of /public/assets/archive</title>
-    <style>
-        /* --- GLOBAL & RESET STYLES --- */
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff;
-            color: #000000;
-            font-family: monospace;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<title>Index of /public/assets/archive</title>
+<style>
+/* --- GLOBAL & RESET STYLES --- */
+html, body {
+height: 100%;
+margin: 0;
+padding: 0;
+background-color: #ffffff;
+color: #000000;
+font-family: monospace;
+box-sizing: border-box;
+}
 
-        /* --- STATE: APACHE DIRECTORY --- */
-        #directory-portal {
-            padding: 20px;
-            display: block;
-        }
-        #directory-portal h1 {
-            font-size: 1.5em;
-            margin-bottom: 5px;
-        }
-        #directory-portal hr {
-            border: 0;
-            border-top: 1px solid #000000;
-            margin: 10px 0;
-        }
-        #directory-portal pre {
-            font-size: 13px;
-            line-height: 1.6;
-        }
-        #directory-portal a {
-            color: #0000ee;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        #directory-portal a:hover {
-            text-decoration: underline;
-        }
-        
-        /* Dead/Offline Link Styling */
-        .dead-link {
-            color: #555555;
-            text-decoration: none;
-            cursor: default;
-        }
-        
-        /* Inline Directory Redactions */
-        .dir-redacted {
-            background-color: #000000;
-            color: #000000;
-            user-select: none;
-            padding: 0 2px;
-        }
+/* --- STATE: MASSIVE APACHE DIRECTORY --- */
+#directory-portal {
+padding: 20px;
+display: block;
+}
+#directory-portal h1 {
+font-size: 1.5em;
+margin-bottom: 5px;
+}
+#directory-portal hr {
+border: 0;
+border-top: 1px solid #000000;
+margin: 10px 0;
+}
+#directory-portal pre {
+font-size: 13px;
+line-height: 1.6;
+}
+#directory-portal a {
+color: #0000ee;
+text-decoration: none;
+cursor: pointer;
+}
+#directory-portal a:hover {
+text-decoration: underline;
+}
 
-        #directory-portal address {
-            font-size: 0.9em;
-            font-style: italic;
-            color: #555555;
-            margin-top: 15px;
-        }
+/* Dead/Offline Link Styling */
+.dead-link {
+color: #555555;
+text-decoration: none;
+cursor: default;
+}
 
-        /* --- DUMMY FILE TEXT VIEWER --- */
-        #file-content-viewer {
-            display: none;
-            padding: 30px;
-            background-color: #fafafa;
-            border: 1px solid #ccc;
-            margin: 20px;
-        }
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: #0000ee;
-            cursor: pointer;
-            text-decoration: underline;
-        }
+/* Inline Directory Redactions */
+.dir-redacted {
+background-color: #000000;
+color: #000000;
+user-select: none;
+padding: 0 2px;
+}
 
-        /* --- STATE: HORROR TERMINAL --- */
-        #terminal-view {
-            display: none; 
-            background-color: #0d0e0d;
-            height: 100%;
-            width: 100%;
-            padding: 40px;
-            box-sizing: border-box;
-            flex-direction: column;
-            position: absolute;
-            top: 0; left: 0;
-            z-index: 20;
-        }
-        .scanline {
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            background-size: 100% 4px, 6px 100%;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 30;
-            pointer-events: none;
-        }
-        .wrapper {
-            max-width: 800px;
-            margin: 0 auto;
-            border: 2px solid #39ff14;
-            padding: 30px;
-            background-color: #050605;
-            box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
-            flex-grow: 1;
-        }
-        .header-block {
-            border-bottom: 2px double #39ff14;
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-            font-size: 12px;
-            text-transform: uppercase;
-            color: #39ff14;
-        }
-        .warning-banner {
-            border: 1px dashed #39ff14;
-            padding: 10px;
-            text-align: center;
-            margin-bottom: 25px;
-            font-weight: bold;
-            color: #39ff14;
-        }
-        .entry {
-            font-size: 14px;
-            line-height: 1.6;
-            white-space: pre-wrap;
-            color: #39ff14;
-        }
-        .redacted {
-            background-color: #000;
-            color: #000; 
-            border: 1px solid #1a1a1a;
-            padding: 0 3px;
-        }
-        .redacted::selection { background-color: #39ff14; color: #000; }
-        .redacted::-moz-selection { background-color: #39ff14; color: #000; }
+#directory-portal address {
+font-size: 0.9em;
+font-style: italic;
+color: #555555;
+margin-top: 15px;
+}
 
-        .terminal-prompt {
-            margin-top: 40px;
-            border-top: 1px solid #39ff14;
-            padding-top: 15px;
-            font-size: 12px;
-            color: #21961b;
-            display: flex;
-            justify-content: space-between;
-        }
-        .terminal-exit-btn {
-            color: #39ff14;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-        .hidden-whisper {
-            text-align: center;
-            color: #151815;
-            font-size: 11px;
-            margin-top: 60px;
-            letter-spacing: 2px;
-            user-select: none;
-        }
+/* --- DUMMY FILE TEXT VIEWER --- */
+#file-content-viewer {
+display: none;
+padding: 30px;
+background-color: #fafafa;
+border: 1px solid #ccc;
+margin: 20px;
+}
+.back-btn {
+display: inline-block;
+margin-bottom: 20px;
+color: #0000ee;
+cursor: pointer;
+text-decoration: underline;
+}
 
-        /* --- INTERMEDIARY BOOT SCREEN --- */
-        #boot-screen {
-            display: none;
-            background-color: #000000;
-            color: #39ff14;
-            font-family: monospace;
-            padding: 40px;
-            height: 100%;
-            box-sizing: border-box;
-            position: absolute;
-            top: 0; left: 0; width: 100%;
-            z-index: 25;
-        }
-    </style>
+/* --- STATE: HORROR TERMINAL --- */
+#terminal-view {
+display: none;
+background-color: #0d0e0d;
+height: 100%;
+width: 100%;
+padding: 40px;
+box-sizing: border-box;
+flex-direction: column;
+position: absolute;
+top: 0; left: 0;
+z-index: 20;
+}
+.scanline {
+background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+background-size: 100% 4px, 6px 100%;
+position: fixed;
+top: 0; left: 0; width: 100%; height: 100%;
+z-index: 30;
+pointer-events: none;
+}
+.wrapper {
+max-width: 800px;
+margin: 0 auto;
+border: 2px solid #39ff14;
+padding: 30px;
+background-color: #050605;
+box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
+flex-grow: 1;
+}
+.header-block {
+border-bottom: 2px double #39ff14;
+padding-bottom: 15px;
+margin-bottom: 25px;
+font-size: 12px;
+text-transform: uppercase;
+color: #39ff14;
+}
+.warning-banner {
+border: 1px dashed #39ff14;
+padding: 10px;
+text-align: center;
+margin-bottom: 25px;
+font-weight: bold;
+color: #39ff14;
+}
+.entry {
+font-size: 14px;
+line-height: 1.6;
+white-space: pre-wrap;
+color: #39ff14;
+}
+.redacted {
+background-color: #000;
+color: #000;
+border: 1px solid #1a1a1a;
+padding: 0 3px;
+}
+.redacted::selection { background-color: #39ff14; color: #000; }
+.redacted::-moz-selection { background-color: #39ff14; color: #000; }
+
+.terminal-prompt {
+margin-top: 40px;
+border-top: 1px solid #39ff14;
+padding-top: 15px;
+font-size: 12px;
+color: #21961b;
+display: flex;
+justify-content: space-between;
+}
+.terminal-exit-btn {
+color: #39ff14;
+text-decoration: underline;
+cursor: pointer;
+}
+.hidden-whisper {
+text-align: center;
+color: #151815;
+font-size: 11px;
+margin-top: 60px;
+letter-spacing: 2px;
+user-select: none;
+}
+
+/* --- INTERMEDIARY BOOT SCREEN --- */
+#boot-screen {
+display: none;
+background-color: #000000;
+color: #39ff14;
+font-family: monospace;
+padding: 40px;
+height: 100%;
+box-sizing: border-box;
+position: absolute;
+top: 0; left: 0; width: 100%;
+z-index: 25;
+}
+</style>
 </head>
 <body>
 
 <div id="directory-portal">
-    <h1 id="dir-title">Index of /public/assets/archive</h1>
-    <hr>
-    
+<h1 id="dir-title">Index of /public/assets/archive</h1>
+<hr>
+
+    <!-- LEVEL 0: ROOT DIRECTORY -->
     <pre id="root-dir">
 <a onclick="showViewer('parent')">../</a>
 <span class="dir-item">[DIR]</span> <span class="dead-link">grid_monitoring_2003_fallback/</span>        2003-08-15 01:22     -
@@ -199,6 +200,7 @@
 <span class="file-item">[CSV]</span> <a onclick="showViewer('freight')">regional_freight_manifest_midwest.csv</a> 2026-02-10 13:14   188KB
     </pre>
 
+    <!-- LEVEL 1: FILES IN FILES -->
     <pre id="nest-level-1" style="display: none;">
 <a onclick="enterFolder('root-dir', '')">../</a>
 <span class="dir-item">[DIR]</span> <span class="dead-link">deprecated_sql_dumps/</span>                 2012-10-04 15:02     -
@@ -207,6 +209,7 @@
 <span class="file-item">[BAK]</span> <span class="dead-link">corrupted_master_mbr.bak</span>              2012-10-01 09:22  14.2MB
     </pre>
 
+    <!-- LEVEL 2: FILES IN FILES IN FILES -->
     <pre id="nest-level-2" style="display: none;">
 <a onclick="enterFolder('nest-level-1', '/root_system_backups_2012')">../</a>
 <span class="dir-item">[DIR]</span> <span class="dead-link">failed_sector_logs/</span>                  2012-10-04 15:11     -
@@ -214,6 +217,7 @@
 <span class="file-item">[LOG]</span> <a onclick="showViewer('junk2')">hardware_fault_stack.log</a>              2012-10-03 23:55    92KB
     </pre>
 
+    <!-- LEVEL 3: DEEP FILE WITH DEAD ENDS -->
     <pre id="nest-level-3" style="display: none;">
 <a onclick="enterFolder('nest-level-2', '/root_system_backups_2012/diagnostic_dumps_v4')">../</a>
 <span class="dir-item">[DIR]</span> <span class="dead-link">empty_allocation_table/</span>              2012-10-04 15:12     -
@@ -222,6 +226,7 @@
 <span class="file-item">[PDF]</span> <span class="dir-redacted">██████████████████████████████.pdf</span>    2004-09-26 12:00   8.4MB
     </pre>
 
+    <!-- LEVEL 4: THE HIDDEN LEGACY TERMINAL FILE -->
     <pre id="legacy-dir" style="display: none;">
 <a onclick="enterFolder('nest-level-3', '/root_system_backups_2012/diagnostic_dumps_v4/recovery_sectors')">../</a>
 <span class="file-item">[LOG]</span> <a onclick="triggerTerminalBoot()">B6-SHI-TEXT.log</a>                       1986-11-12 23:04     4KB
@@ -229,79 +234,81 @@
 <span class="file-item">[TXT]</span> <span class="dir-redacted">██████████████████████████████.txt</span>    1985-04-12 14:10    32KB
 <span class="file-item">[TXT]</span> <span class="dead-link">executive_board_transition_memo.txt</span>   1986-11-05 10:15    16KB
     </pre>
-    
-    <hr>
-    <address>Apache/2.4.41 (Ubuntu) Server at portal.tearsystems.com Port 80</address>
+
+<hr>
+<address>Apache/2.4.41 (Ubuntu) Server at portal.tearsystems.com Port 80</address>
 </div>
 
 <div id="file-content-viewer">
-    <div class="back-btn" onclick="closeViewer()">🧾 Return to Directory Listing</div>
-    <pre id="file-raw-text"></pre>
+<div class="back-btn" onclick="closeViewer()">🧾 Return to Directory Listing</div>
+<pre id="file-raw-text"></pre>
 </div>
 
 <div id="boot-screen">
-    <pre>
+<pre>
 CONNECT 10.244.81.4 // PORTAL PROTOCOL SECURE RECOVERY...
 LOADING DEPRECATED FILESYSTEM MODULES [OK]
 MOUNTING COLD CORE VOLUME ST1986...
 DECRYPTING FILE DESCRIPTOR: 86-SHI-TEXT...
 STABILIZING GEOMETRIC MATRIX TRANSLATION...
 READY.
-    </pre>
+</pre>
 </div>
 
 <div id="terminal-view">
-    <div class="scanline"></div>
+<div class="scanline"></div>
 
-    <div class="wrapper">
-        <div class="header-block">
-            ============================================================<br>
-            REGISTRY FILE DESCRIPTOR // ID: 86-SHI-TEXT<br>
-            SYSTEM LOG TIME-STAMP: 11-12-1986 // STATUS: UNLOCKED<br>
-            ============================================================
-        </div>
+<div class="wrapper">
+<div class="header-block">
+============================================================<br>
+REGISTRY FILE DESCRIPTOR // ID: 86-SHI-TEXT<br>
+SYSTEM LOG TIME-STAMP: 11-12-1986 // STATUS: UNLOCKED<br>
+============================================================
+</div>
 
-        <div class="warning-banner">
-            *** UNCOMMITTED RESTRUCTURING RECORD -- TRANSCRIPTS ONLY ***
-        </div>
+<div class="warning-banner">
+*** UNCOMMITTED RESTRUCTURING RECORD -- TRANSCRIPTS ONLY ***
+</div>
 
-        <div class="entry">
+<div class="entry">
 [LOG ENTRY BEGINS]
 
 DOCUMENT RE: LIQUIDATION & TRANSITION
 
-NOTICE IS HEREBY GIVEN THAT EFFECTIVE OCTOBER 31, 1986, STERLING HEAVY INDUSTRIES HAS CONCLUDED THE INDEPENDENT LIQUIDATION OF ALL <span class="redacted">PREVIOUS INDUSTRIAL MANUFACTURING MACHINERY AND EQUIPMENT SECTORS.</span> 
+NOTICE IS HEREBY GIVEN THAT EFFECTIVE OCTOBER 31, 1986, STERLING HEAVY INDUSTRIES HAS CONCLUDED THE INDEPENDENT LIQUIDATION OF ALL <span class="redacted">PREVIOUS INDUSTRIAL MANUFACTURING MANUFACTURING MACHINERY AND EQUIPMENT SECTORS.</span>
 
-PURSUANT TO THE PRIVATE ACQUISITION CLAUSE DIRECTED BY <span class="redacted">NEW CORPORATE MANAGEMENT, 100% OF REMAINING PHYSICAL ASSETS, PROPERTY HOLDINGS, AND REGIONAL PIPELINES</span> HAVE BEEN TRANSFERRED DIRECTLY TO THE NEWLY FORMED ENTITY: 
+PURSUANT TO THE PRIVATE ACQUISITION CLAUSE DIRECTED BY <span class="redacted">NEW CORPORATE MANAGEMENT, 100% OF REMAINING PHYSICAL ASSETS, PROPERTY HOLDINGS, AND REGIONAL PIPELINES</span> HAVE BEEN TRANSFERRED DIRECTLY TO THE NEWLY FORMED ENTITY:
 
-T.E.A.R. SYSTEMS INC. 
+T.E.A.R. SYSTEMS INC.
 (TETHERIN ENGINEERING & ARCHITECTURAL RESEARCH)
 
 ALL CENTRAL <span class="redacted">MANUFACTURING OPERATIONS AND HEAVY PLANT</span> DEPARTMENTS ARE CEASING PRODUCTION. REPURPOSING OF REGIONAL ARCHITECTURAL BOUNDARIES AND <span class="redacted">GEOMETRIC GRIDS</span> IS SCHEDULED TO BEGIN IMMEDIATELY UNDER THE NEW EXECUTIVE BOARD. ALL PRIOR DEPT RECORDS SEALED PER INTERNAL PROTOCOL.
 
 [END OF TRANSCRIPT]
-        </div>
+</div>
 
-        <div class="terminal-prompt">
-            <span>Awaiting input... _</span>
-            <span class="terminal-exit-btn" onclick="exitTerminal()">[ DISCONNECT / EXIT ]</span>
-        </div>
-    </div>
+<div class="terminal-prompt">
+<span>Awaiting input... _</span>
+<span class="terminal-exit-btn" onclick="exitTerminal()">[ DISCONNECT / EXIT ]</span>
+</div>
+</div>
 
-    <div class="hidden-whisper">
-        the second echo forgets the original sound
-    </div>
+<div class="hidden-whisper">
+the second echo forgets the original sound
+</div>
 </div>
 
 <script>
     // Universal Multi-Level Folder Navigation
     function enterFolder(folderId, pathSuffix) {
+        // Hide every folder view automatically
         const folders = ['root-dir', 'legacy-dir', 'nest-level-1', 'nest-level-2', 'nest-level-3'];
         folders.forEach(id => {
             const el = document.getElementById(id);
             if (el) el.style.display = 'none';
         });
 
+        // Show the active one & update the Apache breadcrumb title
         document.getElementById(folderId).style.display = 'block';
         document.getElementById('dir-title').innerText = "Index of /public/assets/archive" + pathSuffix;
     }
@@ -314,63 +321,14 @@ ALL CENTRAL <span class="redacted">MANUFACTURING OPERATIONS AND HEAVY PLANT</spa
         viewer.style.display = 'block';
 
         const fileDatabase = {
-            hvac: `[2025-01-05 09:11:00] HVAC SYSTEM LOG // CENTRAL COMPRESSOR STATUS: AMBIGUOUS
-[CAUTION] Minor pressure fluctuations noted along the residential geometric parameters. 
-[ALERT] Automated environmental sensors on designated structural boundaries indicate spatial layout mismatch. Maintenance teams dispatched to confirm room alignments on alternative layout options. Access paths to the 13th floor remain unindexed by primary elevators.`,
-            
-            osha: `TEAR SYSTEMS INC. -- OCCUPATIONAL SAFETY AND HEALTH COMPLIANCE CHECKLIST
-Document ID: TEAR-OSHA-2025-REV4
-
-1. Emergency exit illumination paths must be kept free of equipment or unlisted hardware.
-2. Electrical main breaker closets require a minimum of 36 inches clear working space.
-3. Any unlisted structural variations or unexpected basement level access corridors found during floor plan updates are to be reported to executive management immediately. 
-[NOTICE] Do not attempt to resolve layout spatial discrepancies with third-party contractor blueprints. (Reference Incident: Toronto 1999 cover-up zone).`,
-            
-            invoice: `INVOICE #INV-7711-TEAR-MEDICAL
-DATE: 2026-03-19 // TERMS: RESTRICTED USE
-
-VENDOR: PHARMA-MATRIX BALANCING SOLUTIONS
-SHIP TO: T.E.A.R. SYSTEMS LOGISTICS CENTER (OFF-SITE DEPOT)
-
-ITEM ID      DESCRIPTION                               QTY     UNIT PRICE    TOTAL
-----------------------------------------------------------------------------------
-#CS-992      Chemical Neuro-Stabilizer Compounds       4,000   $320.00       $1,280,000.00
-#HD-104      Hospice Isolation Care Unit Hardware       50      $1,200.00     $60,000.00
-
-STATUS: APPROVED // SECURE COURIER DISPATCH REQUIRED.
-Note: Specialized handlers only. Keep product shielded from external atmospheric variations until integration phase.`,
-            
-            permit: `CITY OF TORONTO -- MULTI-RESIDENTIAL ARCHITECTURAL SAFETY PERMIT
-Location Code: TEAR-TOR-04921
-Authorized Service Max Load: 4,500 LBS
-
-This documentation confirms that the vertical transport apparatus installed at the multi-residential structural coordinates has passed baseline mechanical balance tests. 
-Operational transit restrictions applied to levels 1 through 12. 
-Notice: Level 13 access configuration completely restricted via private structural variance. Physical access point hidden in plain sight. Do not alter local panel programming.`,
-            
-            freight: `CENTRAL FREIGHT DISPATCH MANIFEST // REGION MIDWEST LOGISTICS
-TRACKING STATUS: DISCREPANCY RECORD UNRESOLVED
-
-CARGO ID    TYPE            WEIGHT (OUTBOUND)   WEIGHT (TERMINAL INTAKE)   STATUS NOTES
-------------------------------------------------------------------------------------------------
-#FR-9102    GRAIN BULK      180,000 LBS         0 LBS                      *MASS DISPLACEMENT EVENT
-#FR-9109    LIVESTOCK       220,000 LBS         0 LBS                      *RE-ROUTED TO ANCHOR GRID
-#FR-9200    RAW INDUSTRIAL  140,000 LBS         140,000 LBS                NOMINAL BALANCE
-
-*System Note: Gravity metrics failed to sync during regional grid blackout of August 14, 2003. Space fold anomaly suspected. Sub-sector allocation ordered by executive board.*`,
-            
-            junk1: `EMERGENCY SAFEMODE DIAGNOSTIC DUMP // OVERRIDE LOG
-Status: Non-critical errors compiled.
-Neural synapse dullness tracking enabled on duplicate assets. If subject reports unexplainable phantom depression, sudden memory gaps, or phantom limb syndrome, do not log via standard medical avenues. Contact assigned corporate specialist directly to adjust stabilization medication.`,
-            
-            junk2: `HARDWARE FAULT STACK TRACKER // MEMORY ERROR LOG
-ERROR: Neural memory matrix degradation loop detected. 
-DNA sequence skew observed at 0.04% deviation threshold. Physical deterioration symptoms mimicking early-onset neurological disorders expected within years 11 through 12. Corporate retrieval protocol must trigger automatically at end of phase. Ensure zero tissue footprints remain.`,
-            
-            junk3: `INTERNAL REVENUE MATRIX -- SITE UPKEEP ASSIGNMENTS
-Cafeteria Vending Machine Maintenance Allocations: NOMINAL
-Doctor Office Retainer Allowances: CERTIFIED
-Note: Ensure certified medical personnel are provided with standard company diagnosis transcripts. Any clone exhibiting degradation must be officially diagnosed with generic neurological disorder to prevent public investigation.`
+            hvac: `[2025-01-01 08:00:00] HVAC SYSTEM LOG // ZONE 3 COMPRESSOR STATUS: NOMINAL\nAmbient air intake temperature recorded at 68.4 F.\nRoutine line pressure optimization sequence complete. Coolant at full capacity.`,
+            osha: `TEAR SYSTEMS INC. -- OCCUPATIONAL SAFETY AND HEALTH COMPLIANCE GENERAL CHECKLIST\n1. Emergency exit illumination paths must be kept free.\n2. Electrical main breaker closets require a minimum of 36 inches clear working space.`,
+            invoice: `INVOICE #INV-7711-TEAR-CENTRAL\nVENDOR: NORTHERN INDUSTRIAL SUPPLY\nITEM: Heavy-Duty Rotational Floor Buffers x12\nSTATUS: INVOICE PAID // TRANSACTION CLOSED.`,
+            permit: `CITY OF TORONTO -- BUILDING SAFETY DIVISION\nNotice: Level 13 access configuration restricted via corporate private structural variance. System architecture verified safe for ongoing transit operations.`,
+            freight: `CENTRAL FREIGHT DISPATCH MANIFEST\n*System Note: Gravity metrics failed to sync at loading docks. Security override applied per order of Executive Board.*`,
+            junk1: `CONFIDENTIALITY NOTICE: This text file contains zero parameters of interest. Do not log automated scripts against this sector header.`,
+            junk2: `SYS CORRUPTION WARNING: Block 0x09F21 failed CRC checksum verification. Local sector parity check abandoned.`,
+            junk3: `BUDGET APPROVALS Q3:\nCafeteria Vending Machine Maintenance: $150.00\nLobby Planter Soil Replacements: $45.00\nApproved by: Management.`
         };
 
         textBox.innerText = fileDatabase[fileType] || `HTTP ERROR 403: ACCESS DENIED.\nYou do not have administrative clearance to view this asset.`;
@@ -396,10 +354,17 @@ Note: Ensure certified medical personnel are provided with standard company diag
         }, 1500);
     }
 
-    // Returns Player from Terminal back to the deepest folder layer
+    // Way back mechanism out of the green terminal
     function exitTerminal() {
         document.getElementById('terminal-view').style.display = 'none';
         document.body.style.backgroundColor = '#ffffff';
         document.title = "Index of /public/assets/archive";
         document.getElementById('directory-portal').style.display = 'block';
-   
+        
+        // Deposits them right back at the deepest rabbit hole folder where they found it
+        enterFolder('legacy-dir', '/root_system_backups_2012/diagnostic_dumps_v4/recovery_sectors/restructuring_legacy_1986');
+    }
+</script>
+
+</body>
+</html>
