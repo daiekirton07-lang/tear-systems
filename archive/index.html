@@ -4,12 +4,19 @@
     <meta charset="UTF-8">
     <title>RECOVERY_INDEX_1986_SEC3.LOG</title>
     <style>
-        body {
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
             background-color: #0d0e0d;
+        }
+        body {
             color: #39ff14; /* Neon matrix green */
             font-family: "Courier New", Courier, monospace;
             padding: 40px;
-            margin: 0;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
         }
         .scanline {
             background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
@@ -26,6 +33,7 @@
             padding: 30px;
             background-color: #050605;
             box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
+            flex-grow: 1;
         }
         .header-block {
             border-bottom: 2px double #39ff14;
@@ -50,22 +58,19 @@
         /* --- STRICT REDACTION MECHANIC --- */
         .redacted {
             background-color: #000;
-            color: #000; /* Text matches background perfectly */
+            color: #000; 
             border: 1px solid #1a1a1a;
             padding: 0 3px;
         }
         
-        /* This sets the color of the text ONLY when the user actively selects/highlights it */
         .redacted::selection {
-            background-color: #39ff14; /* Changes selection box to green */
-            color: #000; /* Makes text pop out in black inside the highlight */
+            background-color: #39ff14; 
+            color: #000; 
         }
-        /* For different browser types */
         .redacted::-moz-selection {
             background-color: #39ff14;
             color: #000;
         }
-        /* --- ------------------------- --- */
 
         .terminal-prompt {
             margin-top: 40px;
@@ -73,6 +78,16 @@
             padding-top: 15px;
             font-size: 12px;
             color: #21961b;
+        }
+
+        /* --- SUBTLE BOTTOM FOOTER --- */
+        .hidden-whisper {
+            text-align: center;
+            color: #151815; /* Extremely dark gray against a dark green/black body */
+            font-size: 11px;
+            margin-top: 60px;
+            letter-spacing: 2px;
+            user-select: none;
         }
     </style>
 </head>
